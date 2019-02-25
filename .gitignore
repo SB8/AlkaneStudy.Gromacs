@@ -1,0 +1,15 @@
+# Large gromacs files (trajectories)
+*.xtc
+*.trr
+
+# Misc gromacs files
+*.xvg
+
+# Gromacs automatic backups
+*#
+
+# HPC logs
+GROMACS.*
+
+# Executables
+*.exe
