@@ -1,3 +1,5 @@
+.DS_store
+
 # Large gromacs files (trajectories)
 *.xtc
 *.trr
@@ -13,3 +15,9 @@ GROMACS.*
 
 # Executables
 *.exe
+
+# Python
+__pycache__/
+
+# Visual Studio Code
+.vscode/
