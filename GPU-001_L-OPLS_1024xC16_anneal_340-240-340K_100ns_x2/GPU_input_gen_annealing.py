@@ -41,7 +41,7 @@ currentCoords = newSim.coordsOut
 finalize_simulation(newSim, shellFile, outputDir)
 
 # Equilibration at atmospheric pressure
-newSim = SimGromacs([mdpFF, mdp_NPT], shellFile, 
+newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile, 
 			mdrun=mdrunCmd,
 			suffix='NPT_eq', 
 			coords=currentCoords)
