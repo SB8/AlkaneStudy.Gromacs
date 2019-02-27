@@ -52,9 +52,11 @@ L_OPLS = {
 	
 	'cutoff-scheme': 'Verlet',
 	'coulombtype': 'PME',
-	'rcoulomb': '1.4',
+	'rcoulomb': '1.3',
 	'vdwtype': 'Cut-off',
-	'rvdw': '1.4',
+	'vdw-modifier': 'Force-switch',
+	'rvdw': '1.3',
+	'rvdw-switch': '1.1',
 	'DispCorr': 'EnerPres',
 	
 	'constraints': 'h-bonds',
