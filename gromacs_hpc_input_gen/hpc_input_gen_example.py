@@ -11,7 +11,7 @@ from sim_class import SimGromacs, finalize_simulation
 outputDir = os.getcwd()
 
 shellName = 'run_gromacs.sh'
-groStart = '1024xC16_UA_start.gro'
+currentCoords = '1024xC16_UA_start.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
@@ -36,7 +36,7 @@ newSim = SimGromacs([mdpFF, mdp.EM], shellFile,
 			mdrun=mdrunCmd,
 			suffix='EM', 
 			traj='trr',
-			coords=groStart)
+			coords=currentCoords)
 # This stores the filename of the current coordinate file (.gro)
 currentCoords = newSim.coordsOut
 # Write EM to file

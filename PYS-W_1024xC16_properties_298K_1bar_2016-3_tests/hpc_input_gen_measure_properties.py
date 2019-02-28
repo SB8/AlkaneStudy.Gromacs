@@ -67,9 +67,9 @@ extrapoints = [4,2] # Below and above
 acc = base_acc/f**extrapoints[0]
 
 for i in range(1+sum(extrapoints)):
-	newSim = SimGromacs([mdpFF, mdp.NPT], shellFile, 
+	newSim = SimGromacs([mdpFF, mdp.NVT], shellFile, 
 				mdrun=mdrunCmd,
-				suffix='NPT_cosacc_'+'{:.4f}'.format(acc),
+				suffix='NVT_cosacc_'+'{:.4f}'.format(acc),
 				coords=currentCoords)
 	currentCoords = newSim.coordsOut
 	newSim.set_param('nsteps', int((base_nsteps+1)*base_acc/acc/100000)*100000)

@@ -5,7 +5,7 @@
 #include "C16H34_L-OPLS-AA.itp"
 
 [system]
-GPU_L-OPLS_1024xC16_anneal_340-240-340K_100ns_x2
+GPU_L-OPLS_1024xC16_anneal_340-240-340K_100ns
 
 [molecules]
 C16AA   1024
