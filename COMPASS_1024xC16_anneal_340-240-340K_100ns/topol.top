@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C16H34_COMPASS_cg.itp"
+
+[system]
+L-OPLS_512xC16_test1
+
+[molecules]
+C16AA   512

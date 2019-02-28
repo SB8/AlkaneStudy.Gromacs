@@ -17,6 +17,7 @@ class SimGromacs:
 		self.coords = kwargs.get('coords', 'gro_start.gro')
 		self.topol = kwargs.get('topol', 'topol.top')
 		self.suffix = kwargs.get('suffix', '')
+		self.tableFile = kwargs.get('table', '')
 		self.coordsOut = "gro_"+self.suffix+".gro"
 		self.traj = kwargs.get('traj', 'xtc') # Can pass ['xtc', 'trr'] to use both
 
@@ -63,7 +64,10 @@ def finalize_simulation(sim, shellFile, outputDir):
 	shellFile.write(sim.mdrun+' -s tpr_'+sim.suffix+'.tpr ')
 	for op in sim.outputs:
 		shellFile.write('-'+gmxFlags[op]+' '+op+'_'+sim.suffix+'.'+op+' ')
-	
+	if sim.tableFile.strip():
+		shellFile.write('-table '+sim.tableFile)
+
+
 	shellFile.write('\n')
 
 

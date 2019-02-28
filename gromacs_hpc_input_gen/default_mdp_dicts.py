@@ -83,6 +83,49 @@ FlexWilliams = {
 	
 	'constraints': 'none'}
 
+COMPASS = {
+	'integrator': 'md',
+	'dt': '0.001',
+	'nstlog': '1000',
+	'nstcalcenergy': '100',
+	'nstenergy': '1000',
+	'nstxout-compressed': '1000',
+	'compressed-x-precision': '1000',
+	
+	'cutoff-scheme': 'group',
+	'rlist': '1.05',
+	'coulombtype': 'PME',
+	'coulomb-modifier': 'Potential-shift',
+	'rcoulomb': '1.05',
+	'vdwtype': 'User',
+	'vdw-modifier': 'Potential-shift',
+	'rvdw': '1.05',
+	'DispCorr': 'EnerPres',
+	
+	'constraints': 'none'}
+
+COMPASS_buffered_RF0 = {
+	'integrator': 'md',
+	'dt': '0.001',
+	'nstlog': '1000',
+	'nstcalcenergy': '100',
+	'nstenergy': '1000',
+	'nstxout-compressed': '1000',
+	'compressed-x-precision': '1000',
+	
+	'cutoff-scheme': 'group',
+	'rlist': '1.25',
+	# Infinite dielectric constant beyond rcoulomb, so effectively a cut-off
+	'coulombtype': 'Reaction-Field-zero',
+	'coulomb-modifier': 'Potential-shift',
+	'rcoulomb': '1.05',
+	'vdwtype': 'User',
+	'vdw-modifier': 'Potential-shift',
+	'rvdw': '1.05',
+	'DispCorr': 'EnerPres',
+	
+	'constraints': 'none'}
+
 
 # Steepest descent EM
 EM = {
