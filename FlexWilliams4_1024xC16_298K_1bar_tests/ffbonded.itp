@@ -1,0 +1,44 @@
+[ bondtypes ]
+;i        j                           type      r0        k
+;C-C, flexible Williams 
+ C_FWL4   C_FWL4                        1      0.1530   98533.2
+ C_FWL7   C_FWL7                        1      0.1530   98533.2
+;C-H, Williams bond length, Smith & Karplus force constant 
+ C_FWL4   H_FWL4                        1      0.1040  138072.0
+ C_FWL7   H_FWL7                        1      0.1040  138072.0
+
+[ angletypes ]
+;i        j        k                  type    theta0      k
+;C-C-C, Williams angle, Smith & Karplus force constant 
+ C_FWL4   C_FWL4   C_FWL4               1     112.000   251.040
+ C_FWL7   C_FWL7   C_FWL7               1     112.000   251.040
+;C-C-H 
+ C_FWL4   C_FWL4   H_FWL4               1     110.000   187.900
+ C_FWL7   C_FWL7   H_FWL7               1     110.000   187.900
+;H-C-H 
+ H_FWL4   C_FWL4   H_FWL4               1     106.000   158.110
+ H_FWL7   C_FWL7   H_FWL7               1     106.000   158.110
+
+[ dihedraltypes ]
+;i        j        k        l         type      a0        a1 ...
+;C-C-C-C 
+ C_FWL4   C_FWL4   C_FWL4   C_FWL4      9       0.000     1.715         1
+;C-C-C-C 
+ C_FWL4   C_FWL4   C_FWL4   C_FWL4      9       0.000     0.402         2
+;C-C-C-C 
+ C_FWL4   C_FWL4   C_FWL4   C_FWL4      9       0.000     0.979         3
+;C-C-C-H 
+ C_FWL4   C_FWL4   C_FWL4   H_FWL4      9       0.000     0.741         3
+;H-C-C-H 
+ H_FWL4   C_FWL4   C_FWL4   H_FWL4      9       0.000     0.690         3
+;C-C-C-C 
+ C_FWL7   C_FWL7   C_FWL7   C_FWL7      9       0.000     1.715         1
+;C-C-C-C 
+ C_FWL7   C_FWL7   C_FWL7   C_FWL7      9       0.000     0.402         2
+;C-C-C-C 
+ C_FWL7   C_FWL7   C_FWL7   C_FWL7      9       0.000     0.979         3
+;C-C-C-H 
+ C_FWL7   C_FWL7   C_FWL7   H_FWL7      9       0.000     0.741         3
+;H-C-C-H 
+ H_FWL7   C_FWL7   C_FWL7   H_FWL7      9       0.000     0.690         3
+

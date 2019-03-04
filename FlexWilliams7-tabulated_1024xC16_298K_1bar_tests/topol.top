@@ -2,10 +2,10 @@
 #include "forcefield.itp"
 
 ; Other includes
-#include "C16H34_COMPASS.itp"
+#include "C16H34_FWL7-AA.itp"
 
 [system]
-COMPASS_PME-vs-RF0_1024xC16_298K_1bar_tests
+FlexWilliams_tab_1024xC16_298K_1bar_tests
 
 [molecules]
 C16AA   1024

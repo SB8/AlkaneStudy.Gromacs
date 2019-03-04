@@ -36,25 +36,30 @@ vdwtype                 = Cut-off
 vdw-modifier            = Force-switch
 rvdw-switch             = 1.1
 rvdw                    = 1.3
+constraints             = h-bonds
+constraint-algorithm    = Lincs
+lincs-order             = 4
+lincs-iter              = 1
 ```
 ### CHARMM
 
 ### COMPASS-gmx
 The 9-6 Lennard-Jones potential must be tabulated, hence vdwtype = User.
 
-Unbuffered with PME electrostatics:
+With PME electrostatics:
 
 ```
 dt                      = 0.001
 cutoff-scheme           = group
-rlist                   = 1.05
+rlist                   = 1.15
 coulombtype             = PME
 rcoulomb                = 1.05
 vdwtype                 = User
+vdw-modifier            = Potential-shift
 rvdw                    = 1.05
 ```
 
-Buffered with cutoff electrostatics, implemented using Reaction-Field-zero:
+With cutoff electrostatics, implemented using Reaction-Field-zero:
 
 ```
 dt                      = 0.001
@@ -74,15 +79,16 @@ Williams, D.E., 1967. Nonbonded potential parameters derived from crystalline hy
 
 The original potential was parameterized using a short cutoff (necessary in 1967), but a wide range of cutoffs were used in subsequent MD studies.
 
-No charges and therefore charge-groups are present, so no buffer is used (rlist = rvdw).
+No charges and used, so it is less important to use a buffer (buffer = rlist - rvdw).
 
 ```
 dt                      = 0.001
 cutoff-scheme           = group
-rlist                   = 1.05
+rlist                   = 1.15
 coulombtype             = Cut-off ; no charges
 rcoulomb                = 1.05
 vdwtype                 = Cut-off
+vdw-modifier            = Potential-shift
 rvdw                    = 1.05
 ```
 

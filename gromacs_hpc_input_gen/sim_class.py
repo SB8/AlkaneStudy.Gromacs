@@ -18,6 +18,7 @@ class SimGromacs:
 		self.topol = kwargs.get('topol', 'topol.top')
 		self.suffix = kwargs.get('suffix', '')
 		self.tableFile = kwargs.get('table', '')
+		self.indexFile = kwargs.get('indexFile', '')
 		self.coordsOut = "gro_"+self.suffix+".gro"
 		self.traj = kwargs.get('traj', 'xtc') # Can pass ['xtc', 'trr'] to use both
 
@@ -59,15 +60,17 @@ def finalize_simulation(sim, shellFile, outputDir):
 	shellFile.write('\n')
 	# grompp
 	shellFile.write(sim.grompp+' -f mdp_'+sim.suffix+'.mdp -c '+sim.coords)
-	shellFile.write(' -p '+sim.topol+' -o tpr_'+sim.suffix+'.tpr\n')
+	shellFile.write(' -p '+sim.topol+' -o tpr_'+sim.suffix+'.tpr')
+	if sim.indexFile.strip():
+		shellFile.write(' -n '+sim.indexFile)
+	shellFile.write('\n')
+
 	# mdrun
 	shellFile.write(sim.mdrun+' -s tpr_'+sim.suffix+'.tpr ')
 	for op in sim.outputs:
-		shellFile.write('-'+gmxFlags[op]+' '+op+'_'+sim.suffix+'.'+op+' ')
+		shellFile.write(' -'+gmxFlags[op]+' '+op+'_'+sim.suffix+'.'+op)
 	if sim.tableFile.strip():
-		shellFile.write('-table '+sim.tableFile)
-
-
+		shellFile.write(' -table '+sim.tableFile)
 	shellFile.write('\n')
 
 

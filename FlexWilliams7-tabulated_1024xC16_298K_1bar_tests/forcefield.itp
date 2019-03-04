@@ -1,0 +1,8 @@
+
+[ defaults ]
+; nbfunc    comb-rule   gen-pairs
+  1         1           no
+; For tabulated interaction, nbfunc=1 regardless of interaction form
+
+#include "ffnonbonded.itp"
+#include "ffbonded.itp"
