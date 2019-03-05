@@ -6,6 +6,8 @@
 
 # Misc gromacs files
 *.xvg
+*.tpr
+mdout.mdp
 
 # Gromacs automatic backups
 *#
