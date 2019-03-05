@@ -42,6 +42,15 @@ lincs-order             = 4
 lincs-iter              = 1
 ```
 ### CHARMM
+```
+cutoff-scheme           = Verlet
+coulombtype             = PME
+rcoulomb                = 1.2
+vdwtype                 = Cut-off
+vdw-modifier            = Force-switch
+rvdw-switch             = 1.0
+rvdw                    = 1.2
+```
 
 ### COMPASS-gmx
 The 9-6 Lennard-Jones potential must be tabulated, hence vdwtype = User.
@@ -79,7 +88,7 @@ Williams, D.E., 1967. Nonbonded potential parameters derived from crystalline hy
 
 The original potential was parameterized using a short cutoff (necessary in 1967), but a wide range of cutoffs were used in subsequent MD studies.
 
-No charges and used, so it is less important to use a buffer (buffer = rlist - rvdw).
+No charges are used, so it is less important to use a buffer (buffer = rlist - rvdw).
 
 ```
 dt                      = 0.001

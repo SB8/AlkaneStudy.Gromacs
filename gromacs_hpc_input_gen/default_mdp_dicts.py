@@ -64,6 +64,30 @@ L_OPLS = {
 	'lincs-order': '4',
 	'lincs-iter': '1'}
 
+CHARMM36 = {
+	'integrator': 'md',
+	'dt': '0.001',
+	'nstlog': '1000',
+	'nstcalcenergy': '100',
+	'nstenergy': '1000',
+	'nstxout-compressed': '2000',
+	'compressed-x-precision': '1000',
+	
+	'cutoff-scheme': 'Verlet',
+	'rlist': '1.2', # Will be automatically set in Verlet scheme anyway
+	'coulombtype': 'PME',
+	'rcoulomb': '1.2',
+	'vdwtype': 'Cut-off',
+	'vdw-modifier': 'Force-switch',
+	'rvdw': '1.2',
+	'rvdw-switch': '1.0',
+	'DispCorr': 'EnerPres',
+	
+	'constraints': 'h-bonds',
+	'constraint-algorithm': 'Lincs',
+	'lincs-order': '4',
+	'lincs-iter': '1'}
+
 FlexWilliams = {
 	'integrator': 'md',
 	'dt': '0.001',

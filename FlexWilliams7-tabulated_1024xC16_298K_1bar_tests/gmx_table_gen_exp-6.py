@@ -9,11 +9,11 @@ import math
 # r, f, -f', g, -g', h, -h'
 
 # B in repulsive term exp(-B.r)
-b = 36.0 # 1/nm
+b = 37.4 # 1/nm
 # Exponent of attractive terms
 att = 6
 
-step = 0.001 # nm
+step = 0.002 # nm
 r_start = 0.04
 r_cut = 1.05
 r_ext = 1.0
@@ -24,7 +24,7 @@ n_end = int((r_cut+r_ext)/step) + 1
 r_zero = [x*step for x in range(n_switch)]
 r_range = [x*step for x in range(n_switch, n_end)]
 
-tfile = open('table.xvg'.format(b, att), 'w')
+tfile = open('table_H_H.xvg'.format(b, att), 'w')
 
 # Write r = 0 line (all zeros)
 for r in r_zero:
