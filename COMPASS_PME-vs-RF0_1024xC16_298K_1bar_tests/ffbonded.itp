@@ -1,9 +1,9 @@
 [ bondtypes ]
 ;i        j                           type      r0        k
 ;C-C 
- C_4      C_4                           1      0.1530  125381.9
+ C_4      C_4                           1      0.1530  250763.9
 ;C-H 
- C_4      H_1                           1      0.1101  144348.0
+ C_4      H_1                           1      0.1101  288696.0
 
 [ angletypes ]
 ;i        j        k                  type    theta0      k

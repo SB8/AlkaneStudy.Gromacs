@@ -10,7 +10,7 @@ from sim_class import SimGromacs, finalize_simulation
 
 outputDir = os.getcwd()
 
-shellName = 'run_gromacs_1nm-cut_unbuffered.sh'
+shellName = 'run_gromacs_1nm-cut_buffered.sh'
 currentCoords = '1024xC16-AA_5nsEq-FlexWilliams.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
@@ -20,8 +20,8 @@ pbsVars = {'ncpus': '96', 'walltime': '8:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
 mdpFF = mdp.FlexWilliamsLincs
-#mdpFF['rlist'] = '1.05'
-#mdpFF['rcoulomb'] = '1.05'
+mdpFF['rlist'] = '1.05'
+mdpFF['rcoulomb'] = '1.05'
 mdpFF['vdwtype'] = 'User' # Use tabulated potential
 mdpFF['energygrps'] = 'C H' # Energy groups needed to read separate buckingham potential tables
 mdpFF['energygrp-table'] = 'C C C H H H'
@@ -39,11 +39,11 @@ for line in open(hpcHeader):
 # NPT production run
 newSim = SimGromacs([mdpFF, mdp.NPT], shellFile, 
 			mdrun=mdrunCmd,
-			suffix='NPT_sim_1nm-cut_unbuffered',
+			suffix='NPT_sim_1nm-cut_buffered',
 			coords=currentCoords,
 			topol='topol.top',
 			table='table.xvg',
 			indexFile='index.ndx')
 currentCoords = newSim.coordsOut
-newSim.set_param('nsteps', 3000000) 
+newSim.set_param('nsteps', 2000000) 
 finalize_simulation(newSim, shellFile, outputDir)

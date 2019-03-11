@@ -108,6 +108,29 @@ FlexWilliams = {
 	
 	'constraints': 'none'}
 
+FlexWilliamsLincs = {
+	'integrator': 'md',
+	'dt': '0.001',
+	'nstlog': '1000',
+	'nstcalcenergy': '100',
+	'nstenergy': '1000',
+	'nstxout-compressed': '2000',
+	'compressed-x-precision': '1000',
+	
+	'cutoff-scheme': 'group',
+	'rlist': '1.0', # Unbuffered
+	'coulombtype': 'Cut-off',
+	'rcoulomb': '1.0',
+	'vdwtype': 'Cut-off', # Tabulated (vdwtype=User) can be faster
+	'vdw-modifier': 'Potential-shift',
+	'rvdw': '1.0',
+	'DispCorr': 'EnerPres',
+	
+	'constraints': 'h-bonds',
+	'constraint-algorithm': 'Lincs',
+	'lincs-order': '4',
+	'lincs-iter': '1'}
+
 COMPASS = {
 	'integrator': 'md',
 	'dt': '0.001',
