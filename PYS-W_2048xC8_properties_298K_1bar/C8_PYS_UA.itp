@@ -1,0 +1,47 @@
+;----------------------------TITLE ----------------------------------------
+;   n-C8H18 united-atom itp file
+;----------------------------TITLE ----------------------------------------
+
+[ moleculetype ]
+; Name   nrexcl
+C8       3
+
+[ atoms ]
+;  nr   type      resnr  resid   atom  cgnr  charge
+   1   C_3PYS       1     _C8     C     1    0.0
+   2   C_2PYS       1     _C8     C     2    0.0
+   3   C_2PYS       1     _C8     C     3    0.0
+   4   C_2PYS       1     _C8     C     4    0.0
+   5   C_2PYS       1     _C8     C     5    0.0
+   6   C_2PYS       1     _C8     C     6    0.0
+   7   C_2PYS       1     _C8     C     7    0.0
+   8   C_3PYS       1     _C8     C     8    0.0
+
+
+[ bonds ]
+;  ai   aj  funct
+    1    2    1
+    2    3    1
+    3    4    1
+    4    5    1
+    5    6    1
+    6    7    1
+    7    8    1
+
+[ angles ]
+;  ai   aj   ak  funct
+    1    2    3    1
+    2    3    4    1
+    3    4    5    1
+    4    5    6    1
+    5    6    7    1
+    6    7    8    1
+
+[ dihedrals ]
+;  ai   aj   ak   al  funct
+    1    2    3    4    3
+    2    3    4    5    3
+    3    4    5    6    3
+    4    5    6    7    3
+    5    6    7    8    3
+
