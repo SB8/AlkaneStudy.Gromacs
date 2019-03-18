@@ -22,7 +22,7 @@ pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
 mdpFF = mdp.PYSW
 
 # Open shell script for writing
-shellFile = open(os.path.join(outputDir, shellName), 'w')
+shellFile = open(os.path.join(outputDir, shellName), 'w', newline='\n') # Must use unix line endings 
 
 # Write HPC header file (with job description)
 for line in open(hpcHeader):

@@ -103,4 +103,4 @@ rvdw                    = 1.05
 
 
 ## Molecules used
-Two odd-even pairs of n-alkanes: C7, C8 and C15, C16.
+Two odd-even pairs of n-alkanes: C7, C8 and C15, C16. C7 is currently low-priority. 

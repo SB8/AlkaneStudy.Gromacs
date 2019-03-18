@@ -1,0 +1,11 @@
+
+#include "charmm36-nov2018.ff/forcefield.itp"
+
+; Other includes
+#include "C8H18_CHARMM36-CTL.itp"
+
+[system]
+CHARMM36-CTL_2048xC8_properties_298K_1bar
+
+[molecules]
+C8AA    2048
