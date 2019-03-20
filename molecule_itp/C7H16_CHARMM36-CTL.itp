@@ -4,29 +4,29 @@
 
 [ atoms ]
 ;  nr        type   res     resname    atom  cgnr      charge
-    1        CTL3     1       C16AA       C     1     -0.2700
-    2        CTL2     1       C16AA       C     2     -0.1800
-    3        CTL2     1       C16AA       C     3     -0.1800
-    4        CTL2     1       C16AA       C     4     -0.1800
-    5        CTL2     1       C16AA       C     5     -0.1800
-    6        CTL2     1       C16AA       C     6     -0.1800
-    7        CTL3     1       C16AA       C     7     -0.2700
-    8        HAL3     1       C16AA       H     8      0.0900
-    9        HAL3     1       C16AA       H     9      0.0900
-   10        HAL3     1       C16AA       H    10      0.0900
-   11        HAL2     1       C16AA       H    11      0.0900
-   12        HAL2     1       C16AA       H    12      0.0900
-   13        HAL2     1       C16AA       H    13      0.0900
-   14        HAL2     1       C16AA       H    14      0.0900
-   15        HAL2     1       C16AA       H    15      0.0900
-   16        HAL2     1       C16AA       H    16      0.0900
-   17        HAL2     1       C16AA       H    17      0.0900
-   18        HAL2     1       C16AA       H    18      0.0900
-   19        HAL2     1       C16AA       H    19      0.0900
-   20        HAL2     1       C16AA       H    20      0.0900
-   21        HAL3     1       C16AA       H    21      0.0900
-   22        HAL3     1       C16AA       H    22      0.0900
-   23        HAL3     1       C16AA       H    23      0.0900
+    1        CTL3     1        C7AA       C     1     -0.2700
+    2        CTL2     1        C7AA       C     2     -0.1800
+    3        CTL2     1        C7AA       C     3     -0.1800
+    4        CTL2     1        C7AA       C     4     -0.1800
+    5        CTL2     1        C7AA       C     5     -0.1800
+    6        CTL2     1        C7AA       C     6     -0.1800
+    7        CTL3     1        C7AA       C     7     -0.2700
+    8        HAL3     1        C7AA       H     8      0.0900
+    9        HAL3     1        C7AA       H     9      0.0900
+   10        HAL3     1        C7AA       H    10      0.0900
+   11        HAL2     1        C7AA       H    11      0.0900
+   12        HAL2     1        C7AA       H    12      0.0900
+   13        HAL2     1        C7AA       H    13      0.0900
+   14        HAL2     1        C7AA       H    14      0.0900
+   15        HAL2     1        C7AA       H    15      0.0900
+   16        HAL2     1        C7AA       H    16      0.0900
+   17        HAL2     1        C7AA       H    17      0.0900
+   18        HAL2     1        C7AA       H    18      0.0900
+   19        HAL2     1        C7AA       H    19      0.0900
+   20        HAL2     1        C7AA       H    20      0.0900
+   21        HAL3     1        C7AA       H    21      0.0900
+   22        HAL3     1        C7AA       H    22      0.0900
+   23        HAL3     1        C7AA       H    23      0.0900
 
 [ bonds ]
 ;   i     j  type
