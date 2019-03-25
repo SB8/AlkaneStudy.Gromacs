@@ -98,9 +98,9 @@ FlexWilliams = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'group',
-	'rlist': '1.0', # Unbuffered
+	'rlist': '1.05', # Small buffer
 	'coulombtype': 'Cut-off',
-	'rcoulomb': '1.0',
+	'rcoulomb': '1.05',
 	'vdwtype': 'Cut-off', # Tabulated (vdwtype=User) can be faster
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',
@@ -118,9 +118,9 @@ FlexWilliamsLincs = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'group',
-	'rlist': '1.0', # Unbuffered
+	'rlist': '1.05', # Small buffer
 	'coulombtype': 'Cut-off',
-	'rcoulomb': '1.0',
+	'rcoulomb': '1.05',
 	'vdwtype': 'Cut-off', # Tabulated (vdwtype=User) can be faster
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',

@@ -28,7 +28,6 @@ shellFile = open(os.path.join(outputDir, shellName), 'w', newline='\n') # Must u
 for line in open(hpcHeader):
 	for var, rep in pbsVars.items():
 		line = line.replace(var, rep)
-	
 	shellFile.write(line)
 
 # Energy minimization
@@ -49,6 +48,7 @@ newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile,
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
 newSim.set_param('nsteps', 1000000)
+newSim.set_param('ref-t', 400)
 finalize_simulation(newSim, shellFile, outputDir)
 
 # NPT production run

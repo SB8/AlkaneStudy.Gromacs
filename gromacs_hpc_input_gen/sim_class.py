@@ -39,7 +39,7 @@ class SimGromacs:
 def finalize_simulation(sim, shellFile, outputDir):
 
 	# Write .mdp file
-	mdpFile = open(os.path.join(outputDir,'mdp_'+sim.suffix+'.mdp'), 'w')
+	mdpFile = open(os.path.join(outputDir,'mdp_'+sim.suffix+'.mdp'), 'w', newline='\n')
 	# Merge dictionaries, overwriting parameters so last dict takes priority
 	sortedDict = sim.mdpDicts[0] # Start with first dictionary
 	nDicts = len(sim.mdpDicts)
@@ -66,7 +66,7 @@ def finalize_simulation(sim, shellFile, outputDir):
 	shellFile.write('\n')
 
 	# mdrun
-	shellFile.write(sim.mdrun+' -s tpr_'+sim.suffix+'.tpr ')
+	shellFile.write(sim.mdrun+' -s tpr_'+sim.suffix+'.tpr')
 	for op in sim.outputs:
 		shellFile.write(' -'+gmxFlags[op]+' '+op+'_'+sim.suffix+'.'+op)
 	if sim.tableFile.strip():

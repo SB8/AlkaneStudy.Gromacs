@@ -25,3 +25,5 @@ __pycache__/
 
 # Visual Studio Code
 .vscode/
+~$simulation_plans_results.xlsx
+~$*
