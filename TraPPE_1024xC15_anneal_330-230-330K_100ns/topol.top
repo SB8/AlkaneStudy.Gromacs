@@ -2,10 +2,10 @@
 #include "forcefield.itp"
 
 ; Other includes
-#include "C15_PYS_UA.itp"
+#include "C15_TraPPE-UA.itp"
 
 [system]
-PYS-W_1024xC15_anneal_330-230-330K_100ns
+TraPPE_1024xC15_anneal_330-230-330K_100ns
 
 [molecules]
 C15     1024

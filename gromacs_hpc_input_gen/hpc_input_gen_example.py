@@ -48,7 +48,7 @@ newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile,
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
 newSim.set_param('nsteps', 1000000)
-newSim.set_param('ref-t', 400)
+newSim.set_param('ref-t', 320)
 finalize_simulation(newSim, shellFile, outputDir)
 
 # NPT production run

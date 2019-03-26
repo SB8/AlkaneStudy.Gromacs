@@ -11,7 +11,7 @@ from sim_class import SimGromacs, finalize_simulation
 outputDir = os.getcwd()
 
 shellName = 'run_gromacs.sh'
-currentCoords = '1024xC16-UA_4nsEq-PYS.gro'
+currentCoords = '1024xC16-UA_4nsEq-TraPPE.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gmx mdrun'
 
@@ -19,7 +19,8 @@ mdrunCmd = 'gmx mdrun'
 pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_SMOUKOV'}
 
 # Set force field parameters
-mdpFF = mdp.PYSW
+mdpFF = mdp.TraPPE
+mdpFF['coulombtype'] = 'Cut-off' # No charges
 # Params for annealing (start from NPT)
 mdp_anneal = dict(mdp.NPT)
 mdp_anneal['annealing'] = 'single'
