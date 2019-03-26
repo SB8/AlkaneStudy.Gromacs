@@ -5,7 +5,7 @@
 #$ -N GROMACS
 #$ -pe mpi 72
 #$ -P Gold
-#$ -A QMUL_SMOUKOV
+#$ -A QMUL_BOEK
 #$ -cwd
 
 module unload compilers/intel/2018/update3
