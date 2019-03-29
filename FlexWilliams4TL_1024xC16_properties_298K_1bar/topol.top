@@ -5,7 +5,7 @@
 #include "C16H34_FWL4-AA.itp"
 
 [system]
-FlexWilliams4T_1024xC16_properties_298K_1bar
+FlexWilliams4TL_1024xC16_properties_298K_1bar
 
 [molecules]
 C16AA   1024
