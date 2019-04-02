@@ -1,0 +1,7 @@
+
+[ defaults ]
+; nbfunc    comb-rule   gen-pairs
+  2         1           no
+
+#include "ffnonbonded_FW-rescaled.itp"
+#include "ffbonded.itp"

@@ -141,12 +141,13 @@ COMPASS = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'group',
-	'rlist': '1.15',
+	# Small buffer - no charge groups should be used (each atom should be its own charge group)
+	'rlist': '1.05',
 	'coulombtype': 'PME',
-	'rcoulomb': '1.15',
+	'rcoulomb': '1.05',
 	'vdwtype': 'User',
 	'vdw-modifier': 'Potential-shift',
-	'rvdw': '1.05',
+	'rvdw': '1.0',
 	'DispCorr': 'EnerPres',
 	
 	'constraints': 'none'}
