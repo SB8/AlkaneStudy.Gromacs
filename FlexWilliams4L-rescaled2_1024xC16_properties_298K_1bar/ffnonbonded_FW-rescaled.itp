@@ -1,9 +1,0 @@
-[ atomtypes ]
-;name    atnum    mass       charge     ptype     A             B       C
- C_FWL4      6    12.0107    0.0000     A         1.56654e6    40.73   0.00191845
- H_FWL4      1     1.0079    0.0000     A         90259.1      45.17   8.15289e-5
-
-[ nonbond_params ]
-;i          j          ftype     A             B       C
- C_FWL4     H_FWL4      2        76595.3       39.66   0.000443432
-

@@ -1,9 +1,0 @@
-[ atomtypes ]
-;name    atnum    mass       charge     ptype     A             B       C
- C_FWL7      6    12.0107    0.0000     A         9.079100E+05  40.125  1.736675E-03
- H_FWL7      1     1.0079    0.0000     A         5.112070E+04  43.454  1.011520E-04
-
-[ nonbond_params ]
-;i          j          ftype     A             B       C
- C_FWL7     H_FWL7      2        1.350288E+05  40.740  4.361344E-04
-

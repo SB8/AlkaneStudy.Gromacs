@@ -17,6 +17,7 @@ class SimGromacs:
 		self.coords = kwargs.get('coords', 'gro_start.gro')
 		self.topol = kwargs.get('topol', 'topol.top')
 		self.suffix = kwargs.get('suffix', '')
+		self.mdpSuffix = kwargs.get('mdpSuffix', '')
 		self.tableFile = kwargs.get('table', '')
 		self.indexFile = kwargs.get('indexFile', '')
 		self.coordsOut = "gro_"+self.suffix+".gro"
@@ -39,7 +40,12 @@ class SimGromacs:
 def finalize_simulation(sim, shellFile, outputDir):
 
 	# Write .mdp file
-	mdpFile = open(os.path.join(outputDir,'mdp_'+sim.suffix+'.mdp'), 'w', newline='\n')
+	if len(sim.mdpSuffix) == 0:
+		mdpFilename = 'mdp_'+sim.suffix+'.mdp'
+	else:
+		mdpFilename = 'mdp_'+sim.mdpSuffix+'.mdp'
+
+	mdpFile = open(os.path.join(outputDir, mdpFilename), 'w', newline='\n')
 	# Merge dictionaries, overwriting parameters so last dict takes priority
 	sortedDict = sim.mdpDicts[0] # Start with first dictionary
 	nDicts = len(sim.mdpDicts)
@@ -59,7 +65,7 @@ def finalize_simulation(sim, shellFile, outputDir):
 
 	shellFile.write('\n')
 	# grompp
-	shellFile.write(sim.grompp+' -f mdp_'+sim.suffix+'.mdp -c '+sim.coords)
+	shellFile.write(sim.grompp+' -f '+mdpFilename+' -c '+sim.coords)
 	shellFile.write(' -p '+sim.topol+' -o tpr_'+sim.suffix+'.tpr')
 	if sim.indexFile.strip():
 		shellFile.write(' -n '+sim.indexFile)
