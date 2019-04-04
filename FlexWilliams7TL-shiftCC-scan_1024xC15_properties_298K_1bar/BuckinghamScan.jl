@@ -34,7 +34,7 @@ end
 function Buck2_params(A, B, C)
     # Determine interval of alpha to search (must bracket the root to avoid an error)
     a1 = 6; a2 = 20 # Approx values
-    α = find_zero(α -> fα(α, A, B, C), (a1,a2), Bisection(), xatol=0, xrtol=0, maxevals=1000000)
+    α = find_zero(α -> fα(α, A, B, C), (a1,a2), Bisection())
     R0 = α/B
     ϵ = C*B^6*(α-6)/α^7
     return (R0, ϵ, α)
