@@ -20,6 +20,8 @@ pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
 mdpFF = mdp.PYSW
+mdpNPT = dict(mdp.NPT)
+mdpNPT['ref-t'] = '300'
 
 # Open shell script for writing
 shellFile = open(os.path.join(outputDir, shellName), 'w', newline='\n') # Must use unix line endings 
@@ -48,7 +50,7 @@ newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile,
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
 newSim.set_param('nsteps', 1000000)
-newSim.set_param('ref-t', 320)
+newSim.set_param('ref-t', 303) # For example
 finalize_simulation(newSim, shellFile, outputDir)
 
 # NPT production run

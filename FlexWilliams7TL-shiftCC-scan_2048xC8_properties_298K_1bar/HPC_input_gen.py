@@ -11,7 +11,7 @@ from sim_class import SimGromacs, finalize_simulation
 outputDir = os.getcwd()
 
 shellName = 'run_gromacs.sh'
-currentCoords = '1024xC15-AA_14nsEq-FWL4.gro'
+currentCoords = '2048xC8-AA_5nsEq-CHARMM36.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
@@ -35,6 +35,31 @@ for line in open(hpcHeader):
 		line = line.replace(var, rep)
 	
 	shellFile.write(line)
+
+# Energy minimization
+newSim = SimGromacs([mdpFF, mdp.EM], shellFile, 
+			mdrun=mdrunCmd,
+			suffix='EM', 
+			traj='trr',
+			topol='topol_'+shiftStrs[0]+'.top',
+			indexFile='index.ndx',
+			table='tables/table_'+shiftStrs[0]+'.xvg',
+			coords=currentCoords)
+# This stores the filename of the current coordinate file (.gro)
+currentCoords = newSim.coordsOut
+finalize_simulation(newSim, shellFile, outputDir)
+
+# Equilibration at atmospheric pressure
+newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile, 
+			mdrun=mdrunCmd,
+			suffix='NPT_eq',
+			topol='topol_'+shiftStrs[0]+'.top',
+			indexFile='index.ndx',
+			table='tables/table_'+shiftStrs[0]+'.xvg',
+			coords=currentCoords)
+currentCoords = newSim.coordsOut
+newSim.set_param('nsteps', 2000000)
+finalize_simulation(newSim, shellFile, outputDir)
 
 for shift in shiftStrs:
 
