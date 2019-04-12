@@ -142,9 +142,9 @@ COMPASS = {
 	
 	'cutoff-scheme': 'group',
 	# Small buffer - no charge groups should be used (each atom should be its own charge group)
-	'rlist': '1.05',
+	'rlist': '1.1',
 	'coulombtype': 'PME',
-	'rcoulomb': '1.05',
+	'rcoulomb': '1.1',
 	'vdwtype': 'User',
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',
@@ -162,14 +162,14 @@ COMPASS_buffered_RF0 = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'group',
-	'rlist': '1.25',
+	'rlist': '1.2',
 	# Infinite dielectric constant beyond rcoulomb, so effectively a cut-off
 	'coulombtype': 'Reaction-Field-zero',
 	'coulomb-modifier': 'Potential-shift',
-	'rcoulomb': '1.05',
+	'rcoulomb': '1.0',
 	'vdwtype': 'User',
 	'vdw-modifier': 'Potential-shift',
-	'rvdw': '1.05',
+	'rvdw': '1.0',
 	'DispCorr': 'EnerPres',
 	
 	'constraints': 'none'}
