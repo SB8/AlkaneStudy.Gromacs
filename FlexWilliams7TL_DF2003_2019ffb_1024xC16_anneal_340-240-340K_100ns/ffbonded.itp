@@ -1,0 +1,29 @@
+[ bondtypes ]
+;i        j                           type      r0        k
+;C-C, Smith & Karplus force constant 
+ C_FWL7   C_FWL7                        1      0.1530  224262.4
+;C-H, shorter bond length (Williams, 1967), Smith & Karplus force constant 
+ C_FWL7   H_FWL7                        1      0.1040  284512.0
+
+[ angletypes ]
+;i        j        k                  type    theta0      k
+;C-C-C, B3LYP (octane) angle, OPLS/CHARM22 force constant 
+ C_FWL7   C_FWL7   C_FWL7               1     113.700   488.273
+;C-C-H, B3LYP (octane) angle, OPLS/CHARM22 force constant 
+ C_FWL7   C_FWL7   H_FWL7               1     109.200   313.800
+;H-C-H, Williams angle, OPLS/CHARM22 force constant 
+ H_FWL7   C_FWL7   H_FWL7               1     106.000   276.144
+
+[ dihedraltypes ]
+;i        j        k        l         type      a0        a1 ...
+;C-C-C-C 
+ C_FWL7   C_FWL7   C_FWL7   C_FWL7      9      0.0000    1.7154         1
+;C-C-C-C 
+ C_FWL7   C_FWL7   C_FWL7   C_FWL7      9      0.0000    0.4017         2
+;C-C-C-C 
+ C_FWL7   C_FWL7   C_FWL7   C_FWL7      9      0.0000    0.9791         3
+;C-C-C-H 
+ C_FWL7   C_FWL7   C_FWL7   H_FWL7      9      0.0000    0.7406         3
+;H-C-C-H 
+ H_FWL7   C_FWL7   C_FWL7   H_FWL7      9      0.0000    0.6904         3
+

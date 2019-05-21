@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C16H34_FWL7-AA.itp"
+
+[system]
+FlexWilliams7TL_DF2003_2019ffb_1024xC16_anneal_340-240-340K_100ns
+
+[molecules]
+C16AA   1024

@@ -10,12 +10,12 @@ from sim_class import SimGromacs, finalize_simulation
 
 outputDir = os.getcwd()
 
-currentCoords = '1024xC16_4nsEq-FW7L_shiftCC-0.017'
+currentCoords = '1024xC16-AA_6nsEq-FWL7-2019.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '96', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
+pbsVars = {'ncpus': '96', 'walltime': '48:00:00', 'budgetname': 'QMUL_SMOUKOV'}
 
 # Set force field parameters
 mdpFF = mdp.FlexWilliamsLincs
@@ -48,7 +48,7 @@ mdp_anneal['annealing-temp'] = ' '.join(map(str,anneal_temps))
 newSim = SimGromacs([mdpFF, mdp_anneal], shellFile, 
 			mdrun=mdrunCmd,
 			suffix='NPT_anneal_'+'-'.join(map(str,anneal_temps))+'K',
-			table='tables/table_0.020.xvg',
+			table='table.xvg',
 			indexFile='index.ndx',
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
@@ -71,7 +71,7 @@ mdp_anneal['annealing-temp'] = ' '.join(map(str,anneal_temps))
 newSim = SimGromacs([mdpFF, mdp_anneal], shellFile, 
 			mdrun=mdrunCmd,
 			suffix='NPT_anneal_'+'-'.join(map(str,anneal_temps))+'K',
-			table='tables/table_0.020.xvg',
+			table='table.xvg',
 			indexFile='index.ndx',
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
