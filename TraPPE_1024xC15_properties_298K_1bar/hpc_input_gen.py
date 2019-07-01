@@ -16,7 +16,7 @@ hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
+pbsVars = {'ncpus': '48', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
 mdpFF = mdp.TraPPE
@@ -38,33 +38,38 @@ newSim = SimGromacs([mdpFF, mdp.EM], shellFile,
 			suffix='EM', 
 			traj='trr',
 			coords=currentCoords)
-newSim.set_param('constraints', 'none') 
 # This stores the filename of the current coordinate file (.gro)
 currentCoords = newSim.coordsOut
 # Write EM to file
 finalize_simulation(newSim, shellFile, outputDir)
 
-# Equilibration at atmospheric pressure
-newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile, 
-			mdrun=mdrunCmd,
-			suffix='NPT_eq', 
-			coords=currentCoords)
-currentCoords = newSim.coordsOut
-newSim.set_param('nsteps', 2000000)
-finalize_simulation(newSim, shellFile, outputDir)
+n_runs = 5
 
-# NPT production run
-newSim = SimGromacs([mdpFF, mdp.NPT], shellFile, 
-			mdrun=mdrunCmd,
-			suffix='NPT_sim', 
-			coords=currentCoords)
-currentCoords = newSim.coordsOut
-newSim.set_param('nsteps', 5000000) 
-finalize_simulation(newSim, shellFile, outputDir)
+for i in range(0, n_runs, 1):
+
+	# Equilibration at atmospheric pressure (using gen-vel = yes)
+	newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile, 
+				mdrun=mdrunCmd,
+				mdpSuffix='NPT_eq',
+				suffix='NPT_eq_'+str(i), 
+				coords=currentCoords)
+	currentCoords = newSim.coordsOut
+	newSim.set_param('nsteps', 1000000) # 2ns
+	finalize_simulation(newSim, shellFile, outputDir)
+
+	# NPT production run
+	newSim = SimGromacs([mdpFF, mdp.NPT], shellFile, 
+				mdrun=mdrunCmd,
+				mdpSuffix='NPT_sim',
+				suffix='NPT_sim_'+str(i), 
+				coords=currentCoords)
+	currentCoords = newSim.coordsOut
+	newSim.set_param('nsteps', 2000000) # 4ns
+	finalize_simulation(newSim, shellFile, outputDir)
 
 # Call box_resize.py
 shellFile.write('\nsleep 1\n')
-shellFile.write('python3 box_resize.py gmx '+currentCoords+' 3 gro_interface_start.gro\nsleep 1\n')
+shellFile.write('python3 box_resize.py gmx '+'NPT_sim_'+str(n_runs-1)+' 3 gro_interface_start.gro\nsleep 1\n')
 currentCoords = 'gro_interface_start.gro'
 
 # NVT simulation with interface (for surface tension)

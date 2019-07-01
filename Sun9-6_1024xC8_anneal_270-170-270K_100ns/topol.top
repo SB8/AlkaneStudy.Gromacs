@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C8H18_Sun9-6.itp"
+
+[system]
+Sun9-6_1024xC8_anneal_270-170-270K_100ns
+
+[molecules]
+C8AA   1024

@@ -1,6 +1,7 @@
 # Misc
 .DS_store
 *.zip
+*.xlsx 
 
 # Large gromacs files (trajectories)
 *.xtc

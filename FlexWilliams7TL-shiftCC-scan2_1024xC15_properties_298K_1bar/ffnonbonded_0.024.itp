@@ -1,0 +1,9 @@
+[ atomtypes ]
+; Williams potential set 7, epsilon shifted, d2U/dr2 at R0 kept constant
+;name    atnum    mass       charge     ptype     C           A
+ C_FWL7      6    12.0107    0.0000     A         1.9161E-03  4.4087E+05  
+ H_FWL7      1     1.0079    0.0000     A         1.2194E-04  1.6669E+04  
+
+[ nonbond_params ]
+;i          j          ftype     C           A
+ C_FWL7     H_FWL7      1        4.8395E-04  7.2088E+04  

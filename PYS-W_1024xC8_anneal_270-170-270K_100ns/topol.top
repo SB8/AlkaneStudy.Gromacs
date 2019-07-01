@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C8_PYS_UA.itp"
+
+[system]
+PYS-W_1024xC8_anneal_270-170-270K_100ns
+
+[molecules]
+C8     1024

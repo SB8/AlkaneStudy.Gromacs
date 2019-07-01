@@ -3,9 +3,9 @@
 #$ -l mem=4G
 #$ -l tmpfs=10G
 #$ -N GROMACS
-#$ -pe mpi 72
+#$ -pe mpi 48
 #$ -P Gold
-#$ -A QMUL_BOEK
+#$ -A QMUL_BURROWS
 #$ -cwd
 
 module unload compilers/intel/2018/update3

@@ -28,7 +28,7 @@ mdp_anneal['annealing'] = 'single'
 mdp_anneal['annealing-npoints'] = '2'
 mdp_anneal['annealing-time'] = '0 50000' # ps
 mdp_anneal['nsteps'] = '50000000' # 50ns - 1fs time step!
-mdp_anneal['nstxout-compressed'] = '25000' # 1 frame = 0.1K, 1000 frames each half
+mdp_anneal['nstxout-compressed'] = '50000' # 1 frame = 0.1K, 1000 frames each half
 
 # Simulated annealing, decreasing T
 shellFile = open(os.path.join(outputDir, 'run_gromacs_cooling.sh'), 'w', newline='\n')

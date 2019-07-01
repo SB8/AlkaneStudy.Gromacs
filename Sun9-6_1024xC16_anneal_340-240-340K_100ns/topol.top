@@ -5,7 +5,7 @@
 #include "C16H34_Sun9-6.itp"
 
 [system]
-Sun9-6_1024xC16_properties_298K_1bar
+Sun9-6_1024xC16_anneal_340-240-340K_100ns
 
 [molecules]
 C16AA   1024

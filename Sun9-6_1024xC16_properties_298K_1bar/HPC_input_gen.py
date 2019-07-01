@@ -11,23 +11,15 @@ from sim_class import SimGromacs, finalize_simulation
 outputDir = os.getcwd()
 
 shellName = 'run_gromacs.sh'
-currentCoords = '1024xC16-AA_2nsEq-L-OPLS.gro'
+currentCoords = '1024xC16-AA_2nsEq-Sun9-6.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '96', 'walltime': '48:00:00', 'budgetname': 'QMUL_SMOUKOV'}
+pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
-mdpFF = mdp.COMPASS
-mdpFF['constraints'] = 'h-bonds'
-mdpFF['constraint-algorithm'] = 'Lincs'
-
-mdpInterface = dict(mdp.NVT) # Longer cutoffs for interface sim
-mdpInterface['rlist'] = '1.3'
-mdpInterface['rcoulomb'] = '1.3'
-mdpInterface['rvdw'] = '1.2'
-mdpInterface['DispCorr'] = 'no'
+mdpFF = mdp.COMPASS_LINCS
 
 # Open shell script for writing
 shellFile = open(os.path.join(outputDir, shellName), 'w', newline='\n') # Must use unix line endings
@@ -39,37 +31,55 @@ for line in open(hpcHeader):
 	
 	shellFile.write(line)
 
-# Equilibration at atmospheric pressure
-newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile, 
+# Energy minimization
+newSim = SimGromacs([mdpFF, mdp.EM], shellFile, 
 			mdrun=mdrunCmd,
-			suffix='NPT_eq', 
+			suffix='EM', 
+			traj='trr',
 			table='table6-9.xvg',
+			indexFile='index.ndx',
 			coords=currentCoords)
-currentCoords = newSim.coordsOut
-newSim.set_param('nsteps', 4000000)
+# This stores the filename of the current coordinate file (.gro)
+coordsEM = newSim.coordsOut
+# Write EM to file
 finalize_simulation(newSim, shellFile, outputDir)
 
-# NPT production run
-newSim = SimGromacs([mdpFF, mdp.NPT], shellFile, 
-			mdrun=mdrunCmd,
-			suffix='NPT_sim',
-			table='table6-9.xvg',
-			coords=currentCoords)
-currentCoords = newSim.coordsOut
-newSim.set_param('nsteps', 10000000) 
-finalize_simulation(newSim, shellFile, outputDir)
+n_runs = 5
+
+for i in range(0, n_runs, 1):
+
+	# Equilibration at atmospheric pressure (using gen-vel = yes)
+	newSim = SimGromacs([mdpFF, mdp.NPT_eq], shellFile, 
+				mdrun=mdrunCmd,
+				mdpSuffix='NPT_eq',
+				suffix='NPT_eq_'+str(i),
+				table='table6-9.xvg',
+				coords=coordsEM)
+	currentCoords = newSim.coordsOut
+	newSim.set_param('nsteps', 2000000) # 2ns
+	finalize_simulation(newSim, shellFile, outputDir)
+
+	# NPT production run
+	newSim = SimGromacs([mdpFF, mdp.NPT], shellFile, 
+				mdrun=mdrunCmd,
+				mdpSuffix='NPT_sim',
+				suffix='NPT_sim_'+str(i),
+				table='table6-9.xvg',
+				coords=currentCoords)
+	newSim.set_param('nsteps', 4000000) # 4ns
+	finalize_simulation(newSim, shellFile, outputDir)
 
 # Call box_resize.py
 shellFile.write('\nsleep 1\n')
-shellFile.write('python3 box_resize.py gmx '+newSim.suffix+' 3 gro_interface_start.gro\nsleep 1\n')
+shellFile.write('python3 box_resize.py gmx '+'NPT_sim_'+str(n_runs-1)+' 3 gro_interface_start.gro\nsleep 1\n')
 currentCoords = 'gro_interface_start.gro'
 
 # NVT simulation with interface (for surface tension)
-newSim = SimGromacs([mdpFF, mdpInterface], shellFile, 
+newSim = SimGromacs([mdpFF, mdp.NVT_interface_PMEVdW], shellFile, 
 			mdrun=mdrunCmd,
 			suffix='NVT_interface',
-			table='table6-9.xvg', 
+			table='table6-9.xvg',
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
 newSim.set_param('nsteps', 10000000) 
-finalize_simulation(newSim, shellFile, outputDir)
+#finalize_simulation(newSim, shellFile, outputDir)

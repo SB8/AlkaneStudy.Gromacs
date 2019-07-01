@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C8_TraPPE-UA.itp"
+
+[system]
+TraPPE_2048xC8_anneal_270-170-270K_100ns
+
+[molecules]
+C8      2048

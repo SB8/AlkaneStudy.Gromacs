@@ -152,7 +152,7 @@ COMPASS = {
 	
 	'constraints': 'none'}
 
-COMPASS_buffered_RF0 = {
+COMPASS_LINCS = {
 	'integrator': 'md',
 	'dt': '0.001',
 	'nstlog': '1000',
@@ -162,17 +162,17 @@ COMPASS_buffered_RF0 = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'group',
-	'rlist': '1.2',
-	# Infinite dielectric constant beyond rcoulomb, so effectively a cut-off
-	'coulombtype': 'Reaction-Field-zero',
-	'coulomb-modifier': 'Potential-shift',
-	'rcoulomb': '1.0',
+	# Small buffer - no charge groups should be used (each atom should be its own charge group)
+	'rlist': '1.1',
+	'coulombtype': 'PME',
+	'rcoulomb': '1.1',
 	'vdwtype': 'User',
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',
 	'DispCorr': 'EnerPres',
 	
-	'constraints': 'none'}
+	'constraints': 'h-bonds',
+    'constraint-algorithm': 'Lincs'}
 
 
 # Steepest descent EM
@@ -180,7 +180,8 @@ EM = {
 	'integrator': 'steep',
 	'nsteps': '10000',
 	'emtol': '100.0',
-	'nstxout': '100'}
+	'nstxout': '100',
+	'constraints': 'none'}
 
 # Generic NPT sim
 NPT = {
