@@ -7,7 +7,7 @@ startTimeEnergy = '500' # picoseconds (as a string)
 startTimeMSD = '500'
 gmxCmd = 'gmx' # Usually 'gmx', but 'gmx_d' for double precision
 
-N = 3
+N = 5
 densityTot = []
 diffTot = []
 

@@ -74,7 +74,7 @@ CHARMM36 = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'Verlet',
-	'rlist': '1.2', # Will be automatically set in Verlet scheme anyway
+	'rlist': '1.2',
 	'coulombtype': 'PME',
 	'rcoulomb': '1.2',
 	'vdwtype': 'Cut-off',

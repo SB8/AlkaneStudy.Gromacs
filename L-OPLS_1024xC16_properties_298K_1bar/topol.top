@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C16H34_L-OPLS-AA.itp"
+
+[system]
+L-OPLS_1024xC16_properties_298K_1bar
+
+[molecules]
+C16AA   1024
