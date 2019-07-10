@@ -2,7 +2,6 @@
 # Settings related to the force field or output only
 # no dt, ref-t or ref-p because meaningless for EM
 TraPPE = {
-	'integrator': 'md',
 	'dt': '0.002',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -23,7 +22,6 @@ TraPPE = {
 	'lincs-iter': '1'}
 
 PYSW = {
-	'integrator': 'md',
 	'dt': '0.002',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -42,7 +40,6 @@ PYSW = {
 	'constraints': 'none'}
 
 L_OPLS = {
-	'integrator': 'md',
 	'dt': '0.002',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -65,7 +62,6 @@ L_OPLS = {
 	'lincs-iter': '1'}
 
 CHARMM36 = {
-	'integrator': 'md',
 	'dt': '0.001',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -89,7 +85,6 @@ CHARMM36 = {
 	'lincs-iter': '1'}
 
 FlexWilliams = {
-	'integrator': 'md',
 	'dt': '0.001',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -108,8 +103,7 @@ FlexWilliams = {
 	
 	'constraints': 'none'}
 
-FlexWilliamsLincs = {
-	'integrator': 'md',
+WilliamsLincs = {
 	'dt': '0.001',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -118,9 +112,9 @@ FlexWilliamsLincs = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'group',
-	'rlist': '1.05', # Small buffer
+	'rlist': '1.1', # Small buffer
 	'coulombtype': 'Cut-off',
-	'rcoulomb': '1.05',
+	'rcoulomb': '1.1',
 	'vdwtype': 'Cut-off', # Tabulated (vdwtype=User) can be faster
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',
@@ -131,8 +125,31 @@ FlexWilliamsLincs = {
 	'lincs-order': '4',
 	'lincs-iter': '1'}
 
+WilliamsTabLincs = {
+	'dt': '0.001',
+	'nstlog': '1000',
+	'nstcalcenergy': '100',
+	'nstenergy': '1000',
+	'nstxout-compressed': '2000',
+	'compressed-x-precision': '1000',
+	
+	'cutoff-scheme': 'group',
+	'rlist': '1.1', # Small buffer
+	'coulombtype': 'Cut-off',
+	'rcoulomb': '1.1',
+	'vdwtype': 'User',
+	'vdw-modifier': 'Potential-shift',
+	'rvdw': '1.0',
+	'energygrps': 'C H', # index file with [ C ] and [ H ] groups must be used
+	'energygrp-table': 'C H H H', # C-C will use default table.xvg
+	'DispCorr': 'EnerPres',
+	
+	'constraints': 'h-bonds',
+	'constraint-algorithm': 'Lincs',
+	'lincs-order': '4',
+	'lincs-iter': '1'}
+
 COMPASS = {
-	'integrator': 'md',
 	'dt': '0.001',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -153,7 +170,6 @@ COMPASS = {
 	'constraints': 'none'}
 
 COMPASS_LINCS = {
-	'integrator': 'md',
 	'dt': '0.001',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -185,6 +201,7 @@ EM = {
 
 # Generic NPT sim
 NPT = {
+	'integrator': 'md',
 	'ref-t': '298',
 	'tcoupl': 'v-rescale',
 	'tc-grps': 'System',
@@ -196,6 +213,7 @@ NPT = {
 
 # NPT with berendsen thermostat (1ps time constant)
 NPT_eq = {
+	'integrator': 'md',
 	'ref-t': '298',
 	'tcoupl': 'v-rescale',
 	'tc-grps': 'System',
@@ -210,6 +228,7 @@ NPT_eq = {
 
 # Generic NVT sim
 NVT = {
+	'integrator': 'md',
 	'ref-t': '298',
 	'tcoupl': 'v-rescale',
 	'tc-grps': 'System',
@@ -218,6 +237,7 @@ NVT = {
 
 # For simulations of interfaces with incraesed r_vdw (5*sigma_CH₂) and semiisotropic Pcoupl
 NPzT_interface = {
+	'integrator': 'md',
 	'ref-t': '298',
 	'rcoulomb': '1.875',
 	'rvdw': '1.875',
@@ -233,6 +253,7 @@ NPzT_interface = {
 # For simulations of interfaces with incraesed r_vdw (5*σ_CH₂) and surface tension coupling 
 # Default γ = 10 mN/m, so γ*2 = 200 bar nm
 NPγT_interface = {
+	'integrator': 'md',
 	'ref-t': '298',
 	'rcoulomb': '1.875',
 	'rvdw': '1.875',
@@ -249,6 +270,7 @@ NPγT_interface = {
 # Constant interface area (in x-y plane)
 # Useful for liquid-vapour systems
 NPT_interface_PMEVdW = {
+	'integrator': 'md',
 	'ref-t': '298',
 	'tcoupl': 'v-rescale',
 	'tc-grps': 'System',
@@ -266,6 +288,7 @@ NPT_interface_PMEVdW = {
 # For NVT simulations of interfaces with PME treatment of VdW - no DispCorr
 # Useful for liquid-vapour systems where accurate pressure measurements are needed
 NVT_interface_PMEVdW = {
+	'integrator': 'md',
 	'ref-t': '298',
 	'tcoupl': 'v-rescale',
 	'tc-grps': 'System',

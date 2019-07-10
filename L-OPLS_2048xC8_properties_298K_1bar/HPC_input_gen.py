@@ -54,7 +54,7 @@ for i in range(0, n_runs, 1):
 				suffix='NPT_eq_'+str(i),
 				coords=coordsEM)
 	currentCoords = newSim.coordsOut
-	newSim.set_param('nsteps', 2000000) # 2ns
+	newSim.set_param('nsteps', 2000000) # 4ns
 	finalize_simulation(newSim, shellFile, outputDir)
 
 	# NPT production run
@@ -63,7 +63,7 @@ for i in range(0, n_runs, 1):
 				mdpSuffix='NPT_sim',
 				suffix='NPT_sim_'+str(i),
 				coords=currentCoords)
-	newSim.set_param('nsteps', 4000000) # 4ns
+	newSim.set_param('nsteps', 4000000) # 8ns
 	finalize_simulation(newSim, shellFile, outputDir)
 
 # Call box_resize.py

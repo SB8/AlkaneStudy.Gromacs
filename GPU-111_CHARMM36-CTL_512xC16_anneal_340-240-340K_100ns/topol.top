@@ -1,0 +1,11 @@
+
+#include "charmm36-nov2018.ff/forcefield.itp"
+
+; Other includes
+#include "C16H34_CHARMM36-CTL.itp"
+
+[system]
+GPU-111_CHARMM36-CTL_512xC16_anneal_340-240-340K_100ns
+
+[molecules]
+C16AA   512

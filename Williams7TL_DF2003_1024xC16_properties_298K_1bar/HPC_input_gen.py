@@ -11,7 +11,7 @@ from sim_class import SimGromacs, finalize_simulation
 outputDir = os.getcwd()
 
 shellName = 'run_gromacs.sh'
-currentCoords = '2048xC8-AA_14nsEq-Sun9-6.gro'
+currentCoords = '1024xC16-AA_5nsEq_FlexWilliams.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
@@ -19,7 +19,7 @@ mdrunCmd = 'gerun mdrun_mpi'
 pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
-mdpFF = mdp.COMPASS_LINCS
+mdpFF = mdp.WilliamsTabLincs
 
 # Open shell script for writing
 shellFile = open(os.path.join(outputDir, shellName), 'w', newline='\n') # Must use unix line endings
@@ -36,14 +36,15 @@ newSim = SimGromacs([mdpFF, mdp.EM], shellFile,
 			mdrun=mdrunCmd,
 			suffix='EM', 
 			traj='trr',
-			table='table6-9.xvg',
+			table='table.xvg',
+			indexFile='index.ndx',
 			coords=currentCoords)
 # This stores the filename of the current coordinate file (.gro)
 coordsEM = newSim.coordsOut
 # Write EM to file
 finalize_simulation(newSim, shellFile, outputDir)
 
-n_runs = 5
+n_runs = 1
 
 for i in range(0, n_runs, 1):
 
@@ -52,7 +53,8 @@ for i in range(0, n_runs, 1):
 				mdrun=mdrunCmd,
 				mdpSuffix='NPT_eq',
 				suffix='NPT_eq_'+str(i),
-				table='table6-9.xvg',
+				table='table.xvg',
+				indexFile='index.ndx',
 				coords=coordsEM)
 	currentCoords = newSim.coordsOut
 	newSim.set_param('nsteps', 2000000) # 2ns
@@ -63,9 +65,9 @@ for i in range(0, n_runs, 1):
 				mdrun=mdrunCmd,
 				mdpSuffix='NPT_sim',
 				suffix='NPT_sim_'+str(i),
-				table='table6-9.xvg',
+				table='table.xvg',
+				indexFile='index.ndx',
 				coords=currentCoords)
-	currentCoords = newSim.coordsOut
 	newSim.set_param('nsteps', 4000000) # 4ns
 	finalize_simulation(newSim, shellFile, outputDir)
 
@@ -78,7 +80,8 @@ currentCoords = 'gro_interface_start.gro'
 newSim = SimGromacs([mdpFF, mdp.NVT_interface_PMEVdW], shellFile, 
 			mdrun=mdrunCmd,
 			suffix='NVT_interface',
-			table='table6-9.xvg',
+			table='table.xvg',
+			indexFile='index.ndx',
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
 newSim.set_param('nsteps', 10000000) 

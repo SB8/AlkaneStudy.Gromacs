@@ -18,9 +18,7 @@ mdrunCmd = 'gerun mdrun_mpi'
 pbsVars = {'ncpus': '96', 'walltime': '48:00:00', 'budgetname': 'QMUL_SMOUKOV'}
 
 # Set force field parameters
-mdpFF = mdp.COMPASS
-mdpFF['constraints'] = 'h-bonds'
-mdpFF['constraint-algorithm'] = 'Lincs'
+mdpFF = mdp.COMPASS_LINCS
 
 # Params for annealing (start from NPT)
 nsteps = 50000000

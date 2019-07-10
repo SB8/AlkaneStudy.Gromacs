@@ -37,7 +37,6 @@ newSim = SimGromacs([mdpFF, mdp.EM], shellFile,
 			suffix='EM', 
 			traj='trr',
 			table='table6-9.xvg',
-			indexFile='index.ndx',
 			coords=currentCoords)
 # This stores the filename of the current coordinate file (.gro)
 coordsEM = newSim.coordsOut
