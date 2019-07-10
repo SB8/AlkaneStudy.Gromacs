@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C15H32_Sun9-6.itp"
+
+[system]
+Sun9-6_512xC15_anneal_330-230-330K_100ns
+
+[molecules]
+C15AA   512
