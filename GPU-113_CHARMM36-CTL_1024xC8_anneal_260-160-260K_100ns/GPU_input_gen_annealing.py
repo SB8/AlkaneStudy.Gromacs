@@ -11,8 +11,12 @@ from sim_class import SimGromacs, finalize_simulation
 outputDir = os.getcwd()
 
 shellName = 'run_gromacs_GPU.sh'
-currentCoords = '512xC16-AA_2nsEq_CHARMM36.gro'
+currentCoords = '1024xC8-AA_2nsEq_CHARMM36.gro'
+hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gmx mdrun'
+
+# Strings to replace in shell header
+pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
 mdpFF = mdp.CHARMM36
@@ -28,11 +32,11 @@ mdp_anneal['nstxout'] = '50000'
 mdp_anneal['nstvout'] = '50000'
 mdp_anneal['nstfout'] = '50000'
 
+T_m = 210
 
 # Open shell script for writing
 shellFile = open(os.path.join(outputDir, shellName), 'w', newline='\n') # Must use unix line endings
 
-T_m = 290
 # decreasing T
 anneal_temps = [T_m+50, T_m-50]
 mdp_anneal['annealing-temp'] = ' '.join(map(str,anneal_temps))

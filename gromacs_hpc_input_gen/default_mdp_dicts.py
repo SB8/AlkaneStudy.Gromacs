@@ -188,7 +188,9 @@ COMPASS_LINCS = {
 	'DispCorr': 'EnerPres',
 	
 	'constraints': 'h-bonds',
-    'constraint-algorithm': 'Lincs'}
+    'constraint-algorithm': 'Lincs',
+	'lincs-order': '4',
+	'lincs-iter': '1'}
 
 
 # Steepest descent EM
