@@ -1,0 +1,11 @@
+
+#include "charmm36-nov2018.ff/forcefield.itp"
+
+; Other includes
+#include "C16H34_CHARMM36-CTL.itp"
+
+[system]
+CHARMM36_18x18x4_C16_crystal_251-301-251K_tau-p-4_20ns
+
+[molecules]
+C16AA    1296

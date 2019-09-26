@@ -1,0 +1,11 @@
+
+#include "forcefield_tab.itp"
+
+; Other includes
+#include "C8H18_FWL7.itp"
+
+[system]
+Williams7TL_DF2003_2019ffb_2048xC8_anneal_260-160-260K_100ns
+
+[molecules]
+C8AA    2048

@@ -3,8 +3,8 @@ import subprocess
 import statistics
 import re
 
-startTimeEnergy = '500' # picoseconds (as a string)
-startTimeMSD = '500'
+startTimeEnergy = '0' # picoseconds (as a string)
+startTimeMSD = '0'
 gmxCmd = 'gmx' # Usually 'gmx', but 'gmx_d' for double precision
 
 N = 5

@@ -44,7 +44,7 @@ L_OPLS = {
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
 	'nstenergy': '1000',
-	'nstxout-compressed': '2000',
+	'nstxout-compressed': '1000',
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'Verlet',
@@ -112,9 +112,9 @@ WilliamsLincs = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'group',
-	'rlist': '1.1', # Small buffer
+	'rlist': '1.05', # Small buffer
 	'coulombtype': 'Cut-off',
-	'rcoulomb': '1.1',
+	'rcoulomb': '1.05',
 	'vdwtype': 'Cut-off', # Tabulated (vdwtype=User) can be faster
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',
@@ -134,9 +134,9 @@ WilliamsTabLincs = {
 	'compressed-x-precision': '1000',
 	
 	'cutoff-scheme': 'group',
-	'rlist': '1.1', # Small buffer
+	'rlist': '1.05', # Small buffer
 	'coulombtype': 'Cut-off',
-	'rcoulomb': '1.1',
+	'rcoulomb': '1.05',
 	'vdwtype': 'User',
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',
@@ -213,7 +213,7 @@ NPT = {
 	'tau-p': '2.0',
 	'compressibility': '5e-5'}
 
-# NPT with berendsen thermostat (1ps time constant)
+# NPT with berendsen barostat (1ps time constant) and gen-vel
 NPT_eq = {
 	'integrator': 'md',
 	'ref-t': '298',
@@ -235,6 +235,18 @@ NVT = {
 	'tcoupl': 'v-rescale',
 	'tc-grps': 'System',
 	'tau-t': '0.1',
+	'Pcoupl': 'no'}
+
+# NVT with gen-vel
+NVT_eq = {
+	'integrator': 'md',
+	'ref-t': '298',
+	'tcoupl': 'v-rescale',
+	'tc-grps': 'System',
+	'tau-t': '0.1',
+	'gen-vel': 'yes',
+	'gen-temp': '298', # Could add warning if this is different to ref-t
+	'gen-seed': '-1',
 	'Pcoupl': 'no'}
 
 # For simulations of interfaces with incraesed r_vdw (5*sigma_CH₂) and semiisotropic Pcoupl

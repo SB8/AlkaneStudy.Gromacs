@@ -1,0 +1,11 @@
+
+#include "charmm36-mar2019.ff/forcefield.itp"
+
+; Other includes
+#include "C16H34_CHARMM36_CC-HCA.itp"
+
+[system]
+CHARMM36_1024xC16_298K_1bar_tests
+
+[molecules]
+C16AA   1024
