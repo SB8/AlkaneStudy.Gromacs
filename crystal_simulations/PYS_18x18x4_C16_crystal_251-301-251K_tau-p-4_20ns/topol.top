@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C16_PYS_UA.itp"
+
+[system]
+PYS_18x18x4_C16_crystal_251-301-251K_tau-p-4_20ns
+
+[molecules]
+C16      1296

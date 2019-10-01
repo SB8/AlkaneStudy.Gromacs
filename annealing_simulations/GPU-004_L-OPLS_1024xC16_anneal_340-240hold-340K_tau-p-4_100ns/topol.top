@@ -1,0 +1,11 @@
+
+#include "L-OPLS_minimal/forcefield.itp"
+
+; Other includes
+#include "C16H34_L-OPLS-AA.itp"
+
+[system]
+GPU-004_L-OPLS_1024xC16_anneal_340-240hold-340K_tau-p-4_100ns
+
+[molecules]
+C16AA   1024
