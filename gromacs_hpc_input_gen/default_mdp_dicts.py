@@ -33,7 +33,7 @@ PYSW = {
 	'coulombtype': 'Cut-off',
 	'rcoulomb': '1.2', 
 	'vdwtype': 'Cut-off',
-	# Waheed uses 1.2 nm, PYS and PengYi use 1.0
+	# Waheed uses 1.2 nm, PYS and PengYi uses 1.0
 	'rvdw': '1.2',
 	'DispCorr': 'EnerPres',
 	
@@ -210,7 +210,7 @@ NPT = {
 	'tau-t': '0.1',
 	'ref-p': '1.0',
 	'Pcoupl': 'Parrinello-Rahman',
-	'tau-p': '2.0',
+	'tau-p': '4.0',
 	'compressibility': '5e-5'}
 
 # NPT with berendsen barostat (1ps time constant) and gen-vel
