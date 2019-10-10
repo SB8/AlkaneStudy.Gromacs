@@ -30,7 +30,7 @@ outputDir = os.getcwd()
 
 currentCoords = 'gro_NPT_eq_298K.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
-mdrunCmd = 'gerun mdrun_mpi'
+mdrunCmd = 'gmx mdrun'
 
 # Strings to replace in shell header
 pbsVars = {'ncpus': '96', 'walltime': '48:00:00', 'budgetname': 'QMUL_SMOUKOV'}
