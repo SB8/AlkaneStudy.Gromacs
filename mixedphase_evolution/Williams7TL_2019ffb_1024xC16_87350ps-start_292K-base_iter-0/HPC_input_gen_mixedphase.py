@@ -17,7 +17,6 @@ if iter == 0:
 # Optionally set from command line argument
 #Tlist = [] # [float(i) for i in args.Tlist.split(',')]
 
-
 # Tell script directiory of HPC input gen module
 gmxModDir = os.path.join('..', '..', 'gromacs_hpc_input_gen')
 sys.path.append(gmxModDir)
@@ -28,15 +27,15 @@ from sim_class import SimGromacs, finalize_simulation
 
 outputDir = os.getcwd()
 
-currentCoords = 'gro_NPT_eq_298K.gro'
+currentCoords = 'gro_NPT_eq_292K.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
-mdrunCmd = 'gmx mdrun'
+mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '96', 'walltime': '48:00:00', 'budgetname': 'QMUL_SMOUKOV'}
+pbsVars = {'ncpus': '96', 'walltime': '48:00:00', 'budgetname': 'QMUL_BOEK'}
 
 # Set force field parameters
-mdpFF = dict(mdp.COMPASS_LINCS)
+mdpFF = dict(mdp.WilliamsTabLincs)
 
 mdp_NPT = dict(mdp.NPT)
 mdp_NPT['tau-p'] = '4.0'

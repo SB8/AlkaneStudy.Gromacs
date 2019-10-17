@@ -36,7 +36,7 @@ for line in open(hpcHeader):
 	shellFile.write(line)
 
 # Eq
-Teq = 292
+Teq = 294
 newSim = SimGromacs([mdpFF, dict(mdp.NVT_eq)], shellFile, 
 			mdrun=mdrunCmd,
 			suffix='NVT_eq_'+str(Teq)+'K',
@@ -47,8 +47,8 @@ newSim = SimGromacs([mdpFF, dict(mdp.NVT_eq)], shellFile,
 currentCoords = newSim.coordsOut
 newSim.set_param('ref-t', Teq)
 newSim.set_param('gen-temp', Teq)
-newSim.set_param('nsteps', 500000)
-newSim.set_param('nstxout-compressed', 1000)
+newSim.set_param('nsteps', 5000000)
+newSim.set_param('nstxout-compressed', 10000)
 finalize_simulation(newSim, shellFile, outputDir)
 
 

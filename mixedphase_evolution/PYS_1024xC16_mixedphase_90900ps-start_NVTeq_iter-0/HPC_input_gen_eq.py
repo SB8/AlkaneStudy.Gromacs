@@ -12,16 +12,17 @@ from sim_class import SimGromacs, finalize_simulation
 outputDir = os.getcwd()
 
 shellName = 'run_gromacs_eq.sh'
+#shellName = 'run_gromacs_'+args.Tlist+'K_'+args.iter+'.sh'
 
-currentCoords = 'Sun9-6_1024xC16_240-340K_41450ps.gro'
+currentCoords = 'gro_240-340K_41150ps.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
-mdrunCmd = 'gmx mdrun'
+mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '96', 'walltime': '7:00:00', 'budgetname': 'QMUL_BURROWS'}
+pbsVars = {'ncpus': '48', 'walltime': '7:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
-mdpFF = mdp.COMPASS_LINCS
+mdpFF = mdp.PYSW
 
 mdp_NPT = dict(mdp.NPT)
 
@@ -36,18 +37,17 @@ for line in open(hpcHeader):
 	shellFile.write(line)
 
 # Eq
-Teq = 298
+Teq = 318
 newSim = SimGromacs([mdpFF, dict(mdp.NVT_eq)], shellFile, 
 			mdrun=mdrunCmd,
 			suffix='NVT_eq_'+str(Teq)+'K',
 			traj='xtc',
-			table='table6-9.xvg',
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
 newSim.set_param('ref-t', Teq)
 newSim.set_param('gen-temp', Teq)
-newSim.set_param('nsteps', 100000) # 100 ps
-newSim.set_param('nstxout-compressed', 100)
+newSim.set_param('nsteps', 2500000) # 5 ns
+newSim.set_param('nstxout-compressed', 2500)
 finalize_simulation(newSim, shellFile, outputDir)
 
 
@@ -55,13 +55,12 @@ newSim = SimGromacs([mdpFF, dict(mdp.NPT_eq)], shellFile,
 			mdrun=mdrunCmd,
 			suffix='NPT_eq_'+str(Teq)+'K',
 			traj='xtc',
-			table='table6-9.xvg',
 			coords=currentCoords)
 #currentCoords = newSim.coordsOut
 newSim.set_param('ref-t', Teq)
 newSim.set_param('gen-vel', 'no')
-newSim.set_param('nsteps', 1000000) # 1 ns
-newSim.set_param('nstxout-compressed', 1000)
+newSim.set_param('nsteps', 250000) # 0.5 ns
+newSim.set_param('nstxout-compressed', 250)
 finalize_simulation(newSim, shellFile, outputDir)
 
 

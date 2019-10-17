@@ -14,12 +14,12 @@ outputDir = os.getcwd()
 shellName = 'run_gromacs_eq.sh'
 #shellName = 'run_gromacs_'+args.Tlist+'K_'+args.iter+'.sh'
 
-currentCoords = 'PYS_1024xC16_240-340K_40900ps.gro'
+currentCoords = 'gro_240-340K_41150ps.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
-mdrunCmd = 'gmx mdrun'
+mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '72', 'walltime': '7:00:00', 'budgetname': 'QMUL_BURROWS'}
+pbsVars = {'ncpus': '48', 'walltime': '7:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
 mdpFF = mdp.PYSW
@@ -46,8 +46,8 @@ newSim = SimGromacs([mdpFF, dict(mdp.NVT_eq)], shellFile,
 currentCoords = newSim.coordsOut
 newSim.set_param('ref-t', Teq)
 newSim.set_param('gen-temp', Teq)
-newSim.set_param('nsteps', 50000) # 100 ps
-newSim.set_param('nstxout-compressed', 50)
+newSim.set_param('nsteps', 5000000) # 10 ns
+newSim.set_param('nstxout-compressed', 5000)
 finalize_simulation(newSim, shellFile, outputDir)
 
 

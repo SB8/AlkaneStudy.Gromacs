@@ -9,14 +9,13 @@ parser.add_argument('-iter')
 args = parser.parse_args()
 
 # User numerical types here, convert to strings after if needed
-Tstart = 298 # int(args.Tstart)
+Tstart = 312 # int(args.Tstart)
 iter = 0 # int(args.iter)
 if iter == 0:
-	Tlist = [Tstart-6, Tstart, Tstart+6, Tstart+12]
+	Tlist = [Tstart-18, Tstart-12, Tstart-6, Tstart]
 
 # Optionally set from command line argument
 #Tlist = [] # [float(i) for i in args.Tlist.split(',')]
-
 
 # Tell script directiory of HPC input gen module
 gmxModDir = os.path.join('..', '..', 'gromacs_hpc_input_gen')
@@ -28,20 +27,35 @@ from sim_class import SimGromacs, finalize_simulation
 
 outputDir = os.getcwd()
 
-currentCoords = 'gro_NPT_eq_298K.gro'
+startCoords = 'Sun9-6_1024xC16_240-340K_41450ps.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '96', 'walltime': '48:00:00', 'budgetname': 'QMUL_SMOUKOV'}
+pbsVars = {'ncpus': '120', 'walltime': '48:00:00', 'budgetname': 'QMUL_SMOUKOV'}
 
 # Set force field parameters
 mdpFF = dict(mdp.COMPASS_LINCS)
 
+# Set simulation lengths
+mdp_NVT = dict(mdp.NVT)
+mdp_NVT['gen-vel'] = 'yes'
+mdp_NVT['gen-seed'] = '-1' # Pseudo-random seed
+mdp_NVT['nstxout-compressed'] = '4000' # 1000 frames
+mdp_NVT['nsteps'] = '4000000' # 4 ns
+
+mdp_NPTeq = dict(mdp.NPT_eq)
+mdp_NPTeq['gen-vel'] = 'no'
+del mdp_NPTeq['gen-temp']
+del mdp_NPTeq['gen-seed']
+mdp_NPTeq['nstxout-compressed'] = '4000'
+mdp_NPTeq['nsteps'] = '1000000' # 1 ns
+
+
 mdp_NPT = dict(mdp.NPT)
+mdp_NPT['nstxout-compressed'] = '20000' # 1000 frames
 mdp_NPT['tau-p'] = '4.0'
 mdp_NPT['nsteps'] = '20000000' # 20 ns
-mdp_NPT['nstxout-compressed'] = '20000' # 1000 
 
 # Set number of parts (len(Tlist) needs to be an integer multiple of this)
 n_parts = 2
@@ -61,28 +75,42 @@ for i in range(n_parts):
 		
 		shellFile.write(line)
 
-	#= T scan
+	# T scan
 	for T in TlistPart:
+
+		# Set temperatures
+		mdp_NVT['ref-t'] = str(T)
+		mdp_NVT['gen-temp'] = str(T)
+		mdp_NPTeq['ref-t'] = str(T)
+		mdp_NPT['ref-t'] = str(T)
+
 		if iter == 0:
-			# Start from eq config
-			coordsStr = currentCoords
-			# Set annealing parameters to avoid temperature discontinuity
-			mdp_NPT['annealing'] = 'single'
-			mdp_NPT['annealing-npoints'] = '3'
-			mdp_NPT['annealing-time'] = '0 4000 20000' # ps
-			mdp_NPT['annealing-temp'] = str(Tstart)+' '+str(T)+' '+str(T)
-			mdp_NPT['ref-t'] = str(T) # Shouldn't matter 
+
+			# NVT eq
+			newSim = SimGromacs([mdpFF, mdp_NVT], shellFile, 
+					mdrun=mdrunCmd,
+					suffix='NVT_'+str(T)+'K', # Has to match coordsStr set above
+					coords=startCoords)
+			currentCoords = newSim.coordsOut
+			finalize_simulation(newSim, shellFile, outputDir)
+
+			# NPT eq
+			newSim = SimGromacs([mdpFF, mdp_NPTeq], shellFile, 
+					mdrun=mdrunCmd,
+					suffix='NPTeq_'+str(T)+'K', # Has to match coordsStr set above
+					coords=currentCoords)
+			currentCoords = newSim.coordsOut
+			finalize_simulation(newSim, shellFile, outputDir)
 
 		else:
 			# Start from previous configuration
-			coordsStr = 'gro_NPT_'+str(T)+'K'+'_'+str(iter-1)+'.gro'
-			mdp_NPT['ref-t'] = str(Tstart)
+			currentCoords = 'gro_NPT_'+str(T)+'K'+'_'+str(iter-1)+'.gro'
 			
-		
+		# Iteration
 		newSim = SimGromacs([mdpFF, mdp_NPT], shellFile, 
 					mdrun=mdrunCmd,
 					suffix='NPT_'+str(T)+'K'+'_'+str(iter), # Has to match coordsStr set above
-					coords=coordsStr)
+					coords=currentCoords)
 		finalize_simulation(newSim, shellFile, outputDir)
 
 	shellFile.close()
