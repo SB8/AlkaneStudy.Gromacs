@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C16_TraPPE-UA.itp"
+
+[system]
+TraPPE_1024xC16_mixedphase_82250ps-start_284-302K-range_iter-0
+
+[molecules]
+C16     1024
