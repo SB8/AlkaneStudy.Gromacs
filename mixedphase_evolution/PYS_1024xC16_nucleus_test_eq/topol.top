@@ -1,0 +1,11 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C16_PYS_UA.itp"
+
+[system]
+PYS_1024xC16_nucleus_test_eq
+
+[molecules]
+C16      1024

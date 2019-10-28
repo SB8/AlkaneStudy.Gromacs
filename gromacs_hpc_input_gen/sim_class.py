@@ -15,6 +15,7 @@ class SimGromacs:
 		self.grompp = kwargs.get('grompp', 'gmx grompp')
 		self.mdrun = kwargs.get('mdrun', 'gmx mdrun')
 		self.coords = kwargs.get('coords', 'gro_start.gro')
+		self.refcoords = kwargs.get('refcoords', '')
 		self.topol = kwargs.get('topol', 'topol.top')
 		self.suffix = kwargs.get('suffix', '')
 		self.mdpSuffix = kwargs.get('mdpSuffix', '')
@@ -69,6 +70,8 @@ def finalize_simulation(sim, shellFile, outputDir):
 	shellFile.write(' -p '+sim.topol+' -o tpr_'+sim.suffix+'.tpr')
 	if sim.indexFile.strip():
 		shellFile.write(' -n '+sim.indexFile)
+	if sim.refcoords.strip():
+		shellFile.write(' -r '+sim.refcoords)
 	shellFile.write('\n')
 
 	# mdrun
