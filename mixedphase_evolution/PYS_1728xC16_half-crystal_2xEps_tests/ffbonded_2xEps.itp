@@ -1,0 +1,27 @@
+[ bondtypes ]
+;i        j                           type      r0        k
+;C-C (corrected) 
+ C_2PYS   C_2PYS                        1      0.1530  292880.0
+ C_2PYS   C_3PYS                        1      0.1530  292880.0
+
+ D_2PYS   D_2PYS                        1      0.1530  292880.0
+ D_2PYS   D_3PYS                        1      0.1530  292880.0
+
+[ angletypes ]
+;i        j        k                  type    theta0      k
+;C-C-C (corrected) 
+ C_2PYS   C_2PYS   C_2PYS               1     109.500   502.080
+ C_2PYS   C_2PYS   C_3PYS               1     109.500   502.080
+
+ D_2PYS   D_2PYS   D_2PYS               1     109.500   502.080
+ D_2PYS   D_2PYS   D_3PYS               1     109.500   502.080
+
+[ dihedraltypes ]
+;i        j        k        l         type      a0        a1 ...
+;C-C-C-C 
+ C_2PYS   C_2PYS   C_2PYS   C_2PYS      3      6.5400   16.9440    3.6280  -27.1120    0.0000    0.0000
+ C_2PYS   C_2PYS   C_2PYS   C_3PYS      3      6.5400   16.9440    3.6280  -27.1120    0.0000    0.0000
+
+ D_2PYS   D_2PYS   D_2PYS   D_2PYS      3      6.5400   16.9440    3.6280  -27.1120    0.0000    0.0000
+ D_2PYS   D_2PYS   D_2PYS   D_3PYS      3      6.5400   16.9440    3.6280  -27.1120    0.0000    0.0000
+

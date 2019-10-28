@@ -30,3 +30,5 @@ __pycache__/
 
 ~$simulation_plans_results.xlsx
 ~$*
+
+force_fields/*

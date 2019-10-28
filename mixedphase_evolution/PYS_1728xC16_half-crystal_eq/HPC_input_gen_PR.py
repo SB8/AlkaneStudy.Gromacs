@@ -11,7 +11,7 @@ from sim_class import SimGromacs, finalize_simulation
 outputDir = os.getcwd()
 
 shellName = 'run_gromacs.sh'
-currentCoords = 'C16_UA_P-1_1x1x1_unwrapped_24x18x3_s2x0x0.gro'
+currentCoords = 'C16_UA_P-1_1x1x1_unwrapped_24x18x4_s1x1x0.gro'
 hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
