@@ -1,0 +1,13 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C16H34_CHARMM36_CTL-HAL.itp"
+#include "C16H34_CHARMM36_CTL-HAL_2xEps.itp"
+
+[system]
+CHARMM36_1536xC16_interface_2xEps_eq
+
+[molecules]
+D16AA   512
+C16AA   1024

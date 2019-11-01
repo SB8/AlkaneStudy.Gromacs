@@ -46,8 +46,7 @@ newSim = SimGromacs([mdpFF, mdpNVTeq], shellFile,
 			mdrun=mdrunCmd,
 			suffix='NVTeq_2xEps_'+str(Teq)+'K',
 			topol='topol_2xEps.top',
-			coords=currentCoords,
-			refcoords=currentCoords)
+			coords=currentCoords)
 currentCoords = newSim.coordsOut
 finalize_simulation(newSim, shellFile, outputDir)
 
@@ -66,12 +65,11 @@ newSim = SimGromacs([mdpFF, mdpNPTeq], shellFile,
 			mdrun=mdrunCmd,
 			suffix='NPTeq_2xEps_'+str(Tplus)+'K',
 			topol='topol_2xEps.top',
-			coords=currentCoords,
-			refcoords=currentCoords)
+			coords=currentCoords)
 currentCoords = newSim.coordsOut
 finalize_simulation(newSim, shellFile, outputDir)
 
-# NPT Equilibration at T+ without position restraints
+# NPT Equilibration at T+ without 2xEps
 mdpNPT2 = dict(mdp.NPT_eq)
 mdpNPT2['ref-t'] = str(Tplus)
 mdpNPT2['gen-vel'] = 'no'
