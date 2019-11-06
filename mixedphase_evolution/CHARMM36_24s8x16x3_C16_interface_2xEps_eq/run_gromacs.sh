@@ -3,7 +3,7 @@
 #$ -l mem=4G
 #$ -l tmpfs=10G
 #$ -N GROMACS
-#$ -pe mpi 96
+#$ -pe mpi 48
 #$ -P Gold
 #$ -A QMUL_BURROWS
 #$ -cwd

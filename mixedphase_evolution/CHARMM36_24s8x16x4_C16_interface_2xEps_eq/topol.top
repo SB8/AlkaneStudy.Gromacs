@@ -6,7 +6,7 @@
 #include "C16H34_CHARMM36_CTL-HAL_2xEps.itp"
 
 [system]
-CHARMM36_1536xC16_interface_2xEps_eq
+CHARMM36_24s8x16x4_C16_interface_2xEps_eq
 
 [molecules]
 C16AA   1536

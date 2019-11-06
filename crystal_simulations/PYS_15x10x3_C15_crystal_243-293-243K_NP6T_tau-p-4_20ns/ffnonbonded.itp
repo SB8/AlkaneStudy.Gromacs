@@ -1,0 +1,6 @@
+[ atomtypes ]
+;name    atnum    mass       charge   ptype   V         W
+;CH2, Paul-Yoon-Smith (J. Chem. Phys. 103, 1702 (1995); doi: 10.1063/1.469740)
+ C_2PYS      6    14.0270    0.0000     A    0.4010    0.4686
+;CH3, Paul-Yoon-Smith (J. Chem. Phys. 103, 1702 (1995); doi: 10.1063/1.469740)
+ C_3PYS      6    15.0350    0.0000     A    0.4010    0.4686

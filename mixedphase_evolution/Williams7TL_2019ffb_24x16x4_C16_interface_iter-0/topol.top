@@ -1,0 +1,12 @@
+
+#include "forcefield_tab.itp"
+
+; Other includes
+#include "C16H34_FWL7.itp"
+
+
+[system]
+Williams7TL_2019ffb_24x16x4_C16_interface_iter-0
+
+[molecules]
+C16AA   1536

@@ -1,0 +1,19 @@
+[ atomtypes ]
+;name    atnum    mass       charge     ptype     C            A
+;D.E. Williams, J. Chem. Phys. 47, 4680 (1967); doi: 10.1063/1.1701684
+ C_FWL4              6    12.0107    0.0000     A         2.3765E-03   3.4991E+05
+ H_FWL4              1     1.0079    0.0000     A         1.1422E-04   1.1104E+04
+
+;D.E. Williams, J. Chem. Phys. 47, 4680 (1967); doi: 10.1063/1.1701684
+ C_FWL7              6    12.0107    0.0000     A         2.1129E-03   2.5899E+05
+DC_FWL7    C_FWL7    6    12.0107    0.0000     A         4.2258E-03   5.1798E+05
+ H_FWL7              1     1.0079    0.0000     A         1.3514E-04   1.1000E+04
+DH_FWL7    H_FWL7    1     1.0079    0.0000     A         2.7028E-04   2.2000E+04
+
+[ nonbond_params ]
+;i          j          ftype     C            A
+;D.E. Williams, J. Chem. Phys. 47, 4680 (1967); doi: 10.1063/1.1701684
+ C_FWL4     H_FWL4      1        5.2300E-04   3.6677E+04
+ 
+ C_FWL7     H_FWL7      1        5.3555E-04   4.6024E+04
+DC_FWL7    DH_FWL7      1        1.0711E-03   9.2048E+04

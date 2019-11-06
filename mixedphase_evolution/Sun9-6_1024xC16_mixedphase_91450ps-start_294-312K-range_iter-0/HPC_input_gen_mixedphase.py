@@ -59,7 +59,7 @@ mdp_NPT['nsteps'] = '20000000' # 20 ns
 
 # Set number of parts (len(Tlist) needs to be an integer multiple of this)
 n_parts = 2
-runsperpart = int(len(Tlist)/2)
+runsperpart = int(len(Tlist)/n_parts)
 
 for i in range(n_parts):
 

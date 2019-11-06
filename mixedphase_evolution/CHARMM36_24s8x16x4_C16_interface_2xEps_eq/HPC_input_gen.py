@@ -12,11 +12,12 @@ outputDir = os.getcwd()
 
 shellName = 'run_gromacs.sh'
 currentCoords = 'C16_24x16x4_solid8_add2x0x0.gro'
-hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
+hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3_err-null.sh')
+print('Using base shell script: ', hpcHeader)
 mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '96', 'walltime': '23:00:00', 'budgetname': 'QMUL_BURROWS'}
+pbsVars = {'ncpus': '72', 'walltime': '23:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 
 # Set force field parameters

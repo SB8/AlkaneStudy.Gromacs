@@ -16,7 +16,7 @@ hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '96', 'walltime': '23:00:00', 'budgetname': 'QMUL_BURROWS'}
+pbsVars = {'ncpus': '48', 'walltime': '23:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 
 # Set force field parameters

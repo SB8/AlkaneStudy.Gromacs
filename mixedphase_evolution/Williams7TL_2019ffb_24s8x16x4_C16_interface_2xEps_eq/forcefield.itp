@@ -1,0 +1,7 @@
+
+[ defaults ]
+; nbfunc    comb-rule   gen-pairs
+  1         1           no
+
+#include "ffnonbonded_tab_2xEps.itp"
+#include "ffbonded.itp"
