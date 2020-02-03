@@ -24,7 +24,7 @@ pbsVars = {'ncpus': '96', 'walltime': '23:00:00', 'budgetname': 'QMUL_BURROWS'}
 mdpFF = dict(mdp.WilliamsTabLincs)
 
 Teq = 360
-Tplus = 306
+Tplus = 328
 dt = float(mdpFF['dt'])
 
 # Open shell script for writing
@@ -67,7 +67,7 @@ currentCoords = newSim.coordsOut
 #finalize_simulation(newSim, shellFile, outputDir)
 
 # NP3T
-totaltime = 0.5 # ns
+totaltime = 0.2 # ns
 mdpNPTeq = dict(mdp.NPT_eq)
 mdpNPTeq['ref-t'] = str(Tplus)
 mdpNPTeq['gen-vel'] = 'no'
@@ -88,7 +88,7 @@ currentCoords = newSim.coordsOut
 finalize_simulation(newSim, shellFile, outputDir)
 
 # NP6T
-totaltime = 0.5 # ns
+totaltime = 2 # ns
 mdpNPT2 = dict(mdp.NPT_eq)
 mdpNPT2['ref-t'] = str(Tplus)
 mdpNPT2['gen-vel'] = 'no'

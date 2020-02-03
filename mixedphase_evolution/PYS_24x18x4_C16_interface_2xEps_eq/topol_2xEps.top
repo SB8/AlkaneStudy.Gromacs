@@ -1,0 +1,13 @@
+
+#include "forcefield.itp"
+
+; Other includes
+#include "C16_PYS_UA.itp"
+#include "C16_PYS_UA_2xEps.itp"
+
+[system]
+PYS_1728xC16_half-crystal_2xEps_tests
+
+[molecules]
+C16      1024
+D16      512

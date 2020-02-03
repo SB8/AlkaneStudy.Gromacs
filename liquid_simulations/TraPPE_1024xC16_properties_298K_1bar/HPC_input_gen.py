@@ -1,7 +1,7 @@
 
 import sys, os
 # Tell script directiory of HPC input gen module
-gmxModDir = os.path.join(os.pardir, 'gromacs_hpc_input_gen')
+gmxModDir = os.path.join('..', '..', 'gromacs_hpc_input_gen')
 sys.path.append(gmxModDir)
 
 # Load default mdp dictionaries, simulation class
@@ -19,7 +19,7 @@ mdrunCmd = 'gerun mdrun_mpi'
 pbsVars = {'ncpus': '48', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
-mdpFF = mdp.TraPPE
+mdpFF = dict(mdp.TraPPE)
 mdpFF['coulombtype'] = 'Cut-off' # Only if no charges
 
 # Open shell script for writing
@@ -39,11 +39,11 @@ newSim = SimGromacs([mdpFF, mdp.EM], shellFile,
 			traj='trr',
 			coords=currentCoords)
 # This stores the filename of the current coordinate file (.gro)
-currentCoords = newSim.coordsOut
+coordsEM = newSim.coordsOut
 # Write EM to file
 finalize_simulation(newSim, shellFile, outputDir)
 
-n_runs = 3
+n_runs = 5
 
 for i in range(0, n_runs, 1):
 
@@ -52,7 +52,7 @@ for i in range(0, n_runs, 1):
 				mdrun=mdrunCmd,
 				mdpSuffix='NPT_eq',
 				suffix='NPT_eq_'+str(i), 
-				coords=currentCoords)
+				coords=coordsEM)
 	currentCoords = newSim.coordsOut
 	newSim.set_param('nsteps', 1000000) # 2ns
 	finalize_simulation(newSim, shellFile, outputDir)
@@ -68,9 +68,9 @@ for i in range(0, n_runs, 1):
 	finalize_simulation(newSim, shellFile, outputDir)
 
 # Call box_resize.py
-shellFile.write('\nsleep 1\n')
-shellFile.write('python3 box_resize.py gmx '+'NPT_sim_'+str(n_runs-1)+' 3 gro_interface_start.gro\nsleep 1\n')
-currentCoords = 'gro_interface_start.gro'
+#shellFile.write('\nsleep 1\n')
+#shellFile.write('python3 box_resize.py gmx '+'NPT_sim_'+str(n_runs-1)+' 3 gro_interface_start.gro\nsleep 1\n')
+#currentCoords = 'gro_interface_start.gro'
 
 # NVT simulation with interface (for surface tension)
 newSim = SimGromacs([mdpFF, mdp.NVT_interface_PMEVdW], shellFile, 
@@ -79,4 +79,4 @@ newSim = SimGromacs([mdpFF, mdp.NVT_interface_PMEVdW], shellFile,
 			coords=currentCoords)
 currentCoords = newSim.coordsOut
 newSim.set_param('nsteps', 5000000) 
-finalize_simulation(newSim, shellFile, outputDir)
+#finalize_simulation(newSim, shellFile, outputDir)
