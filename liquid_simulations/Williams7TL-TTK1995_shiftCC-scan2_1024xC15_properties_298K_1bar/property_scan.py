@@ -8,7 +8,7 @@ gmxCmd = 'gmx' # Usually 'gmx', but 'gmx_d' for double precision
 
 
 # Call again to extract properties
-shiftStrs = ['{:.3f}'.format(i/1000.0) for i in range(0,5,2)]
+shiftStrs = ['{:.3f}'.format(i/1000.0) for i in range(0,29,2)]
 
 for shift in shiftStrs:
 	

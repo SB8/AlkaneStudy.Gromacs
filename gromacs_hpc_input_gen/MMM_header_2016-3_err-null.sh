@@ -1,7 +1,7 @@
 #$ -S /bin/bash
 #$ -l h_rt=walltime
-#$ -l mem=4G
-#$ -l tmpfs=10G
+#$ -l mem=1G
+#$ -l tmpfs=5G
 #$ -N GROMACS
 #$ -pe mpi ncpus
 #$ -P Gold

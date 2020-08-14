@@ -1,0 +1,16 @@
+
+[ defaults ]
+; nbfunc    comb-rule   gen-pairs
+  1         1           no
+
+#include "ffnonbonded_0.013.itp"
+#include "ffbonded.itp"
+
+; Other includes
+#include "C16H34_FWL7-AA.itp"
+
+[system]
+FlexWilliams7TL-shiftCC-scan2_1024xC16_properties_298K_1bar
+
+[molecules]
+C16AA   1024

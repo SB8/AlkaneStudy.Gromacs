@@ -2,15 +2,13 @@
 import subprocess
 import re
 
-boxSelect = 15
-densitySelect = 19
-startTimeEnergy = '1000' # picoseconds (as a string)
-startTimeMSD = '1000'
-gmxCmd = 'gmx_d' # Usually 'gmx', but 'gmx_d' for double precision
+startTimeEnergy = '500' # picoseconds (as a string)
+startTimeMSD = '500'
+gmxCmd = 'gmx' # Usually 'gmx', but 'gmx_d' for double precision
 
 
 # Call again to extract properties
-shiftStrs = ['0.010', '0.012', '0.014', '0.016', '0.018', '0.020', '0.022', '0.024', '0.026', '0.028', '0.030']
+shiftStrs = ['{:.3f}'.format(i/1000.0) for i in range(0,31,2)]
 
 for shift in shiftStrs:
 	
@@ -26,7 +24,7 @@ for shift in shiftStrs:
 		'-b', startTimeEnergy], 
 		stdin = subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-	edr_stdout, edr_err = edrGet.communicate(bytes('15\n19\n', 'utf-8'))
+	edr_stdout, edr_err = edrGet.communicate(bytes('14\n18\n', 'utf-8'))
 	edrGet.terminate()
 	
 	edrTextArr = edr_stdout.decode('utf-8').splitlines()
@@ -51,8 +49,8 @@ for shift in shiftStrs:
 	msdTextArr = msdText.splitlines()
 
 	# Use regular expression to extract diffucion coeff
-	#msdRgx = re.match('^D\[    System\]\s*(\d*\.?\d+)', msdTextArr[-1])
-	msdRgx = re.match('^<D> =\s*(\d*\.?\d+)\s+.*Error =\s*(\d*\.?\d+)', msdTextArr[-4])
+	msdRgx = re.match('^D\[\s*System\]\s*(\d*\.?\d+)', msdTextArr[-1])
+	#msdRgx = re.match('^<D> =\s*(\d*\.?\d+)\s+.*Error =\s*(\d*\.?\d+)', msdTextArr[-4])
 
 	if msdRgx:
 		print(msdRgx.group(1))

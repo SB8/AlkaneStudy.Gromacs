@@ -21,7 +21,24 @@ TraPPE = {
 	'lincs-order': '4',
 	'lincs-iter': '1'}
 
-PYSW = {
+PYS = {
+	'dt': '0.002',
+	'nstlog': '1000',
+	'nstcalcenergy': '100',
+	'nstenergy': '1000',
+	'nstxout-compressed': '1000',
+	'compressed-x-precision': '1000',
+	
+	'cutoff-scheme': 'Verlet',
+	'coulombtype': 'Cut-off',
+	'rcoulomb': '1.0', 
+	'vdwtype': 'Cut-off',
+	'rvdw': '1.0',
+	'DispCorr': 'EnerPres',
+	
+	'constraints': 'none'}
+# Waheed uses rvdw=1.2 nm, PYS and PengYi uses 1.0
+PYS_W = {
 	'dt': '0.002',
 	'nstlog': '1000',
 	'nstcalcenergy': '100',
@@ -33,7 +50,7 @@ PYSW = {
 	'coulombtype': 'Cut-off',
 	'rcoulomb': '1.2', 
 	'vdwtype': 'Cut-off',
-	# Waheed uses 1.2 nm, PYS and PengYi uses 1.0
+	
 	'rvdw': '1.2',
 	'DispCorr': 'EnerPres',
 	
@@ -55,7 +72,7 @@ L_OPLS = {
 	'rvdw': '1.3',
 	'rvdw-switch': '1.1',
 	'DispCorr': 'EnerPres',
-	
+
 	'constraints': 'h-bonds',
 	'constraint-algorithm': 'Lincs',
 	'lincs-order': '4',
@@ -113,6 +130,7 @@ WilliamsLincs = {
 	
 	'cutoff-scheme': 'group',
 	'rlist': '1.05', # Small buffer
+	'nstlist': '5',
 	'coulombtype': 'Cut-off',
 	'rcoulomb': '1.05',
 	'vdwtype': 'Cut-off', # Tabulated (vdwtype=User) can be faster
@@ -135,6 +153,7 @@ WilliamsTabLincs = {
 	
 	'cutoff-scheme': 'group',
 	'rlist': '1.05', # Small buffer
+	'nstlist': '5',
 	'coulombtype': 'Cut-off',
 	'rcoulomb': '1.05',
 	'vdwtype': 'User',
@@ -159,9 +178,10 @@ COMPASS = {
 	
 	'cutoff-scheme': 'group',
 	# Small buffer - no charge groups should be used (each atom should be its own charge group)
-	'rlist': '1.1',
+	'rlist': '1.05',
+	'nstlist': '5',
 	'coulombtype': 'PME',
-	'rcoulomb': '1.1',
+	'rcoulomb': '1.05',
 	'vdwtype': 'User',
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',
@@ -179,9 +199,10 @@ COMPASS_LINCS = {
 	
 	'cutoff-scheme': 'group',
 	# Small buffer - no charge groups should be used (each atom should be its own charge group)
-	'rlist': '1.1',
+	'rlist': '1.05',
+	'nstlist': '5',
 	'coulombtype': 'PME',
-	'rcoulomb': '1.1',
+	'rcoulomb': '1.05',
 	'vdwtype': 'User',
 	'vdw-modifier': 'Potential-shift',
 	'rvdw': '1.0',
@@ -201,18 +222,6 @@ EM = {
 	'nstxout': '100',
 	'constraints': 'none'}
 
-# Generic NPT sim
-NPT = {
-	'integrator': 'md',
-	'ref-t': '298',
-	'tcoupl': 'v-rescale',
-	'tc-grps': 'System',
-	'tau-t': '0.1',
-	'ref-p': '1.0',
-	'Pcoupl': 'Parrinello-Rahman',
-	'tau-p': '4.0',
-	'compressibility': '5e-5'}
-
 # NPT with berendsen barostat (1ps time constant) and gen-vel
 NPT_eq = {
 	'integrator': 'md',
@@ -227,6 +236,81 @@ NPT_eq = {
 	'gen-vel': 'yes',
 	'gen-temp': '298', # Could add warning if this is different to ref-t
 	'gen-seed': '-1'}
+
+# Generic NPT sim
+NPT = {
+	'integrator': 'md',
+	'ref-t': '298',
+	'tcoupl': 'v-rescale',
+	'tc-grps': 'System',
+	'tau-t': '0.1',
+	'ref-p': '1.0',
+	'Pcoupl': 'Parrinello-Rahman',
+	'nstPcouple': '10',
+	'nstPcouple': '10',
+	'tau-p': '4.0',
+	'compressibility': '5e-5'}
+
+# Anisotropic, but with 0 off-diagonal compressibilities
+NP3T = {
+	'integrator': 'md',
+	'ref-t': '298',
+	'tcoupl': 'v-rescale',
+	'tc-grps': 'System',
+	'tau-t': '0.1',
+	'Pcoupl': 'Parrinello-Rahman',
+	'nstPcouple': '10',
+	'Pcoupltype': 'anisotropic',
+	'tau-p': '4.0',
+	'ref-p': '1.0 1.0 1.0 0.0 0.0 0.0',
+	'compressibility': '5e-5 5e-5 5e-5 0.0 0.0 0.0'}
+
+NP3T_eq = {
+	'integrator': 'md',
+	'ref-t': '298',
+	'tcoupl': 'v-rescale',
+	'tc-grps': 'System',
+	'tau-t': '0.1',
+	'Pcoupl': 'Berendsen',
+	'Pcoupltype': 'anisotropic',
+	'tau-p': '1.0',
+	'ref-p': '1.0 1.0 1.0 0.0 0.0 0.0',
+	'compressibility': '5e-5 5e-5 5e-5 0.0 0.0 0.0',
+
+	'gen-vel': 'yes',
+	'gen-temp': '298', # Could add warning if this is different to ref-t
+	'gen-seed': '-1'}
+
+# Fully anisotropic
+NP6T = {
+	'integrator': 'md',
+	'ref-t': '298',
+	'tcoupl': 'v-rescale',
+	'tc-grps': 'System',
+	'tau-t': '0.1',
+	'Pcoupl': 'Parrinello-Rahman',
+	'nstPcouple': '5',
+	'Pcoupltype': 'anisotropic',
+	'tau-p': '4.0',
+	'ref-p': '1.0 1.0 1.0 0.0 0.0 0.0',
+	'compressibility': '5e-5 5e-5 5e-5 5e-5 5e-5 5e-5'}
+
+NP6T_eq = {
+	'integrator': 'md',
+	'ref-t': '298',
+	'tcoupl': 'v-rescale',
+	'tc-grps': 'System',
+	'tau-t': '0.1',
+	'Pcoupl': 'Berendsen',
+	'Pcoupltype': 'anisotropic',
+	'tau-p': '1.0',
+	'ref-p': '1.0 1.0 1.0 0.0 0.0 0.0',
+	'compressibility': '5e-5 5e-5 5e-5 5e-5 5e-5 5e-5',
+	
+	'gen-vel': 'yes',
+	'gen-temp': '298', # Could add warning if this is different to ref-t
+	'gen-seed': '-1'}
+
 
 # Generic NVT sim
 NVT = {

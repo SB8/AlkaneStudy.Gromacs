@@ -16,12 +16,12 @@ hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
 mdrunCmd = 'gerun mdrun_mpi'
 
 # Strings to replace in shell header
-pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
+pbsVars = {'ncpus': '72', 'walltime': '23:00:00', 'budgetname': 'QMUL_BURROWS'}
 
 # Set force field parameters
 mdpFF = mdp.WilliamsTabLincs
 
-shiftStrs = ['{:.3f}'.format(i/1000.0) for i in range(0,27,2)]
+shiftStrs = ['{:.3f}'.format(i/1000.0) for i in range(0,31,2)]
 
 # Open shell script for writing
 shellFile = open(os.path.join(outputDir, shellName), 'w', newline='\n') # Must use unix line endings

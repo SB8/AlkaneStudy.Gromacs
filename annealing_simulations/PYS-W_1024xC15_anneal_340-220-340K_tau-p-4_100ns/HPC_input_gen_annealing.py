@@ -63,7 +63,7 @@ currentCoords = newSim.coordsOut
 finalize_simulation(newSim, shellFile, outputDir)
 
 # increasing T
-anneal_temps = [T_m-50, T_m+50]
+anneal_temps = [T_m-60, T_m+60]
 mdp_anneal['annealing-temp'] = ' '.join(map(str,anneal_temps))
 
 newSim = SimGromacs([mdpFF, mdp_anneal], shellFile, 

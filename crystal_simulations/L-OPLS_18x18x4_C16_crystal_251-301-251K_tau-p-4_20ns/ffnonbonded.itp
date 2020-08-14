@@ -1,9 +1,0 @@
-[ atomtypes ]
-; full atom descriptions are available in ffoplsaa.atp
-; name  bond_type    mass    charge   ptype          sigma      epsilon
- CT_CH3     CT	6     12.01100     0.000       A    3.50000e-01  2.76144e-01
- CT_CH2     CT	6     12.01100     0.000       A    3.50000e-01  2.76144e-01
- HC_CH3     HC	1      1.00800     0.000       A    2.50000e-01  1.25520e-01
- HC_CH2     HC	1      1.00800     0.000       A    2.50000e-01  1.10000e-01
-
- 

@@ -1,7 +1,0 @@
-
-[ defaults ]
-; nbfunc    comb-rule   gen-pairs
-  1         1           no
-
-#include "ffnonbonded_tab.itp"
-#include "ffbonded.itp"

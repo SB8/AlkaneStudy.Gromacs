@@ -6,17 +6,21 @@ sys.path.append(gmxModDir)
 
 # Load default mdp dictionaries, simulation class
 import default_mdp_dicts as mdp
+import cluster_dicts as cluster
 from sim_class import SimGromacs, finalize_simulation
 
 outputDir = os.getcwd()
 
-shellName = 'run_gromacs.sh'
-currentCoords = '1024xC16_UA_start.gro'
-hpcHeader = os.path.join(gmxModDir, 'MMM_header_2016-3.sh')
-mdrunCmd = 'gerun mdrun_mpi'
+# Set HPC cluster
+hpc = dict(cluster.apocrita_sdv)
+hpcHeader = os.path.join(gmxModDir, hpc['header'])
+mdrunCmd = hpc['mdrun']
+print('Using base shell script: ', hpcHeader)
 
-# Strings to replace in shell header
-pbsVars = {'ncpus': '72', 'walltime': '48:00:00', 'budgetname': 'QMUL_BURROWS'}
+pbsVars = {'ncpus': '48', 'walltime': '24:0:0'}
+
+shellName = 'run_gromacs.sh'
+currentCoords = 'C15_15x10x3_Pbcm_rot90Y.gro'
 
 # Set force field parameters
 mdpFF = mdp.PYSW

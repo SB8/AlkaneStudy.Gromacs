@@ -2,6 +2,7 @@
 .DS_store
 *.zip
 *.xlsx 
+*.npz
 
 # Large gromacs files (trajectories)
 *.xtc
@@ -31,4 +32,13 @@ __pycache__/
 ~$simulation_plans_results.xlsx
 ~$*
 
-force_fields/*
+annealing_simulations/*
+crystal_simulations/*
+interface_evolution/*
+liquid_simulations/*
+mixedphase_evolution/*
+nucleus_evolution/*
+starting_configs/*
+tests_multiphase_evolution/*
+
+force_fields/CHARMM36/*
