@@ -29,16 +29,13 @@ __pycache__/
 # Visual Studio Code
 .vscode/
 
-~$simulation_plans_results.xlsx
-~$*
+annealing_simulations/
+crystal_simulations/
+interface_evolution/
+liquid_simulations/
+mixedphase_evolution/
+nucleus_evolution/
+starting_configs/
+tests_multiphase_evolution/
 
-annealing_simulations/*
-crystal_simulations/*
-interface_evolution/*
-liquid_simulations/*
-mixedphase_evolution/*
-nucleus_evolution/*
-starting_configs/*
-tests_multiphase_evolution/*
-
-force_fields/CHARMM36/*
+force_fields/CHARMM36/
