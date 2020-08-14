@@ -1,9 +1,0 @@
-[ atomtypes ]
-;name    atnum    mass       charge   ptype   C             A
-;c4 COMPASS
- C_4         6    12.0110    0.0000     A     2.5502E-03    9.7324E-05
-;h1 COMPASS
- H_1         1     1.0080    0.0000     A     1.6405E-04    2.6072E-06
-
-[ nonbond_params ]
-C_4     H_1     1       6.4682E-04      1.8907E-05

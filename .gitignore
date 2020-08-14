@@ -39,3 +39,5 @@ starting_configs/
 tests_multiphase_evolution/
 
 force_fields/CHARMM36/
+
+gromacs_hpc_input_gen/*.sh

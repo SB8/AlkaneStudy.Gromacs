@@ -7,7 +7,6 @@ apocrita_sdv = {
 	'grompp': 'mpirun -np 1 gmx grompp'
 }
 
-
 apocrita_nxv = {
 	'mdrun': 'gmx mdrun',
 	'header': 'Apocrita_header_2019-4_nxv.sh',
