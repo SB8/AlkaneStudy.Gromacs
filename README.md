@@ -67,8 +67,6 @@ rvdw                    = 1.0
 constraints             = h-bonds
 ```
 
-```
-
 ### Flexible-Williams
 
 Williams, D.E., 1967. Nonbonded potential parameters derived from crystalline hydrocarbons. The Journal of Chemical Physics, 47(11), pp.4680-4684.
