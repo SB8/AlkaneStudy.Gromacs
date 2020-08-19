@@ -40,6 +40,7 @@ constraints             = h-bonds
 ```
 ### CHARMM
 ```
+dt                      = 0.001
 cutoff-scheme           = Verlet
 coulombtype             = PME
 rcoulomb                = 1.2
