@@ -15,6 +15,7 @@
  H_FWL7   C_FWL7   H_FWL7               1     106.000   276.144
 
 [ dihedraltypes ]
+; K. Tu, D. J. Tobias, M. L. Klein, J. Phys. Chem. 1995, 99, 10035-10042
 ;i        j        k        l         type      a0        a1 ...
 ;C-C-C-C 
  C_FWL7   C_FWL7   C_FWL7   C_FWL7      9      0.0000    0.9791         1
@@ -26,4 +27,3 @@
  C_FWL7   C_FWL7   C_FWL7   H_FWL7      9      0.0000    0.7406         3
 ;H-C-C-H 
  H_FWL7   C_FWL7   C_FWL7   H_FWL7      9      0.0000    0.6904         3
-

@@ -82,7 +82,7 @@ williamsHH7 = (1.099974E+04, 37.40, 1.351432E-04)
 pots = (williamsCC7, williamsCH7, williamsHH7)
 #pots = (williamsCC4, williamsCH4, williamsHH4)
 
-for shiftCC = 0.010:0.001:0.014
+for shiftCC = 0.013 # 0.010:0.001:0.014
     shiftStr = @sprintf("%.3f", shiftCC)
     print("\'", shiftStr, "\'", ", ") # For use by HPC_input_gen script
 

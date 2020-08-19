@@ -10,7 +10,7 @@
 #include "C16H34_FWL7-AA.itp"
 
 [system]
-FlexWilliams7TL-shiftCC-scan2_1024xC16_properties_298K_1bar
+Williams7B
 
 [molecules]
 C16AA   1024

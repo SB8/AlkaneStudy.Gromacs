@@ -68,20 +68,6 @@ vdw-modifier            = Potential-shift
 rvdw                    = 1.05
 ```
 
-With cutoff electrostatics, implemented using Reaction-Field-zero:
-
-```
-dt                      = 0.001
-cutoff-scheme           = group
-rlist                   = 1.25
-coulombtype             = Reaction-Field-zero
-coulomb-modifier        = Potential-shift
-rcoulomb                = 1.05
-vdwtype                 = User
-vdw-modifier            = Potential-shift
-rvdw                    = 1.05
-```
-
 ### Flexible-Williams
 
 Williams, D.E., 1967. Nonbonded potential parameters derived from crystalline hydrocarbons. The Journal of Chemical Physics, 47(11), pp.4680-4684.

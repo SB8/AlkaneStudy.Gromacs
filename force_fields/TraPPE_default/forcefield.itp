@@ -3,8 +3,8 @@
 ; Compatible with versions which use no 1-4 LJ interaction and 50% 1-4 Coulomb interaction
 
 [ defaults ]
-; nbfunc    comb-rule   gen-pairs   fudgeLJ     fudgeQQ
-1           2           yes         0.0         0.5
+; nbfunc    comb-rule   gen-pairs 
+1           2           no
 
 #include "ffnonbonded.itp"
 #include "ffbonded.itp"

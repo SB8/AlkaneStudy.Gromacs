@@ -3,14 +3,14 @@
 ; nbfunc    comb-rule   gen-pairs
   1         1           no
 
-#include "ffnonbonded_0.012.itp"
+#include "ffnonbonded.itp"
 #include "ffbonded.itp"
 
 ; Other includes
 #include "C16H34_FWL7-AA.itp"
 
 [system]
-FlexWilliams7TL-shiftCC-scan2_1024xC16_properties_298K_1bar
+Williams7B
 
 [molecules]
 C16AA   1024

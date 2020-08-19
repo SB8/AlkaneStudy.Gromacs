@@ -1,9 +1,7 @@
 
 ; An optimized united atom model for simulations of polymethylene melts
 ; Paul-Yoon-Smith (J. Chem. Phys. 103, 1702 (1995); doi: 10.1063/1.469740)
-; Waheed et al. (Polymer 46 (2005) 8689–8702; doi: 10.1016/j.polymer.2005.02.130)
-
-; Note: Only 1 LJ type, so comb-rule doesn't matter. No 1-4 LJ interactions are used.
+; Ko et al. J. Chem. Phys., Vol. 121, No. 6, 8 August 2004; https://doi.org/10.1063/1.1768515
 
 [ defaults ]
 ; nbfunc    comb-rule   gen-pairs
