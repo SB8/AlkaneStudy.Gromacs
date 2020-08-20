@@ -3,10 +3,11 @@
 ## Folder structure
 
 
-## Force fields .mdp settings
+## Force field .mdp settings
 
 ### PYS-W
-Paul, W., Yoon, D.Y. and Smith, G.D., 1995. An optimized united atom model for simulations of polymethylene melts. The Journal of chemical physics, 103(4), pp.1702-1709.
+W. Paul, D. Y. Yoon, and G. D. Smith, J. Chem. Phys. 103, 1702 (1995)
+https://doi.org/10.1063/1.469740
 
 ```
 dt                      = 0.002
@@ -19,6 +20,8 @@ DispCorr                = EnerPres
 ```
 
 ### TraPPE-UA
+M.G. Martin and J.I. Siepmann, J. Phys. Chem. B, Vol. 102, No. 14, 1998
+https://doi.org/10.1021/jp972543+
 ```
 dt                      = 0.002
 cutoff-scheme           = Verlet
@@ -30,6 +33,8 @@ DispCorr                = EnerPres
 constraints             = all-bonds
 ```
 ### L-OPLS
+S.W.I. Siu, K. Pluhackova, and R.A. Böckmann, J. Chem. Theory Comput. 2012, 8, 4, 1459–1470
+https://doi.org/10.1021/ct200908r
 ```
 dt                      = 0.002
 cutoff-scheme           = Verlet
@@ -43,6 +48,8 @@ DispCorr                = EnerPres
 constraints             = h-bonds
 ```
 ### CHARMM
+J.B. Klauda, R.M. Venable, J.A. Freites, J.W. O’Connor, D.J. Tobias, C. Mondragon-Ramirez, I. Vorobyov, A.D. MacKerell Jr., J. Phys. Chem. B 2010, 114, 7830–7843
+https://doi.org/10.1021/jp101759q
 ```
 dt                      = 0.001
 cutoff-scheme           = Verlet
@@ -56,8 +63,9 @@ constraints             = h-bonds
 ```
 
 ### COMPASS-gmx
+H. Sun, J. Phys. Chem. B 1998, 102, 7338-7364
+https://doi.org/10.1021/jp980939v
 The 9-6 Lennard-Jones potential must be tabulated, hence vdwtype = User.
-With PME electrostatics:
 
 ```
 dt                      = 0.001
@@ -74,7 +82,11 @@ constraints             = h-bonds
 
 ### Williams 7B
 
-Williams, D.E., 1967. Nonbonded potential parameters derived from crystalline hydrocarbons. The Journal of Chemical Physics, 47(11), pp.4680-4684.
+Pair potential: D.E. Williams, J. Chem. Phys. 47, 4680 (1967)
+https://doi.org/10.1063/1.1701684
+
+Torsion potential: K. Tu, D.J. Tobias, and M.L. Klein, J. Phys. Chem. 1995, 99, 24, 10035–10042
+https://doi.org/10.1021/j100024a053
 
 ```
 dt                      = 0.001
