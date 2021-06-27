@@ -1,5 +1,13 @@
 # AlkaneStudy.Gromacs
 
+This Github repository accompanies the article 
+
+**Benchmarking of Molecular Dynamics Force Fields for Solid–Liquid and Solid–Solid Phase Transitions in Alkanes**
+
+J. Phys. Chem. B 2021, 125, 19, 5145–5159
+
+doi.org/10.1021/acs.jpcb.0c07587
+
 ## Folder structure
 
 
