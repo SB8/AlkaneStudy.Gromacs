@@ -4,13 +4,13 @@ This Github repository accompanies the article
 
 **Benchmarking of Molecular Dynamics Force Fields for Solid–Liquid and Solid–Solid Phase Transitions in Alkanes**
 
+Stephen A. Burrows, Ivan Korotkin, Stoyan K. Smoukov, Edo S. Boek, and Sergey Karabasov
+
 J. Phys. Chem. B 2021, 125, 19, 5145–5159
 
 doi.org/10.1021/acs.jpcb.0c07587
 
 ![Graphical Abstract](https://github.com/SB8/AlkaneStudy.Gromacs/blob/master/abstract_graphic_v2.png?raw=true)
-
-## Folder structure
 
 
 ## Force field .mdp settings
@@ -108,4 +108,3 @@ DispCorr                = EnerPres
 constraints             = h-bonds
 ```
 
-## Ensemble .mdp settings
